@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>YaM SOFT — программные проекты</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <h1 id="siteTitle">YaM SOFT</h1>
+      <p id="siteTag">Software & Solutions</p>
+    </div>
+    <div class="controls">
+      <select id="langSelect" aria-label="Language selector">
+        <option value="ru">Русский</option>
+        <option value="en">English</option>
+        <option value="he">עברית</option>
+      </select>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="hero">
+      <div class="hero-overlay">
+        <h2 id="heroTitle">Создаём ПО для вашего бизнеса</h2>
+        <p id="heroDesc">Многоплатформенные решения, надежно и красиво.</p>
+      </div>
+    </section>
+
+    <section class="projects" id="projects">
+      <h3 id="projectsTitle">Проекты</h3>
+      <div id="projectsList" class="projects-list"></div>
+    </section>
+
+    <section class="contact" id="contact">
+      <h3 id="contactTitle">Контакты</h3>
+      <p id="contactInfo">Email: <a id="contactEmail" href="mailto:moiseev.yoav@gmail.com">moiseev.yoav@gmail.com</a></p>
+
+      <form id="contactForm" class="form" name="contact" method="POST" data-netlify="true">
+        <input type="hidden" name="form-name" value="contact">
+        <h4 id="contactFormTitle">Связаться с нами</h4>
+        <input name="name" type="text" id="contactName" placeholder="Ваше имя" required>
+        <input name="email" type="email" id="contactEmailInput" placeholder="Ваш email" required>
+        <select name="project" id="contactProject" required>
+          <option value="" id="contactProjectPlaceholder">Выберите проект</option>
+          <option value="SchoolAutoScheduler">SchoolAutoScheduler</option>
+          <option value="SchoolAutoExam">SchoolAutoExam</option>
+          <option value="SchoolChat">SchoolChat</option>
+          <option value="General" id="contactGeneral">Общий вопрос</option>
+        </select>
+        <input name="subject" type="text" id="contactSubject" placeholder="Тема (напишите название проекта в заголовке)" required>
+        <textarea name="message" id="contactMessage" placeholder="Ваше сообщение" required></textarea>
+        <button type="submit" id="contactSubmit">Отправить</button>
+      </form>
+      <div id="contactNotice" aria-live="polite" style="margin-top:10px;color:var(--blue-1);"></div>
+    </section>
+
+    <section class="cv" id="cv">
+      <h3 id="cvTitle">CV / Резюме</h3>
+      <p id="cvDesc">Скачать резюме: <a id="cvLink" href="assets/CV-ru.pdf" download>CV (PDF)</a></p>
+    </section>
+  </main>
+
+  <footer>
+    <p id="footerText">© YaM SOFT</p>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

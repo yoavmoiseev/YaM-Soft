@@ -1,0 +1,128 @@
+:root{
+  --blue-1:#0b6fa9;
+  --blue-2:#3aa0d6;
+  --white:#ffffff;
+  --text:#03314b;
+}
+*{box-sizing:border-box}
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial; margin:0; color:var(--text); background:linear-gradient(180deg,var(--white),#eef7fb)}
+.site-header{display:flex;align-items:center;justify-content:space-between;padding:8px 20px;background:linear-gradient(90deg,var(--blue-2),var(--blue-1));color:var(--white);height:72px;min-height:56px}
+.brand h1{margin:0;font-size:1.15rem;line-height:1}
+.brand p{margin:4px 0 0;font-size:0.85rem;opacity:0.9}
+.controls{display:flex;align-items:center;gap:8px;height:100%}
+.controls select{padding:6px;border-radius:6px;border:none}
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px 0}
+.hero-overlay{background:rgba(255,255,255,0.62);margin:20px;padding:32px;border-radius:10px;max-width:1100px;width:calc(100% - 40px);box-shadow:0 6px 20px rgba(3,49,75,0.08);backdrop-filter:blur(4px)}
+.projects{padding:24px}
+.projects-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.projects, .contact, .cv{max-width:1100px;margin:32px auto;background:rgba(255,255,255,0.88);border-radius:10px;padding:20px;box-shadow:0 8px 30px rgba(3,49,75,0.06)}
+.project{background:var(--white);border-radius:8px;padding:12px;box-shadow:0 2px 6px rgba(3,49,75,0.06)}
+.project h4{margin:0 0 6px}
+.project .actions{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+.btn{background:var(--blue-1);color:var(--white);padding:8px 10px;border-radius:6px;text-decoration:none;border:none;cursor:pointer;font-size:0.9rem}
+.btn:hover{background:var(--blue-2)}
+.contact,.cv{padding:24px}
+footer{padding:12px 20px;background:rgba(255,255,255,0.9);text-align:center}
+
+/* Project videos on main page */
+.project-video{
+  width:100%;
+  max-width:100%;
+  height:auto;
+  border-radius:6px;
+  margin:8px 0;
+  background:#000;
+}
+
+/* Detailed project pages */
+.projects-detail{max-width:1100px;margin:0 auto;padding:20px}
+.project-detail{background:rgba(255,255,255,0.95);border-radius:12px;padding:24px;margin-bottom:32px;box-shadow:0 4px 16px rgba(3,49,75,0.08)}
+.project-detail h2{margin:0 0 12px;color:var(--blue-1)}
+.project-description{margin:8px 0 16px;line-height:1.6}
+.project-detail-video{
+  width:100%;
+  max-width:100%;
+  height:auto;
+  border-radius:8px;
+  margin:16px 0;
+  background:#000;
+}
+.downloads{display:flex;gap:12px;margin:16px 0;flex-wrap:wrap}
+
+/* Reviews section */
+.reviews-section{margin-top:32px;padding-top:24px;border-top:2px solid #eef7fb}
+.reviews-section h3{color:var(--blue-1);margin:0 0 16px}
+.reviews-list{display:grid;gap:16px;margin-bottom:24px}
+.review-card{
+  background:var(--white);
+  border-radius:8px;
+  padding:16px;
+  box-shadow:0 2px 8px rgba(3,49,75,0.06);
+  border-left:4px solid var(--blue-2);
+}
+.review-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;flex-wrap:wrap;gap:8px}
+.review-author strong{display:block;font-size:1rem;color:var(--text)}
+.review-position{display:block;font-size:0.85rem;color:#666;margin-top:2px}
+.review-rating{font-size:1.1rem;line-height:1}
+.review-message{margin:12px 0;line-height:1.6;color:var(--text)}
+.review-footer{display:flex;justify-content:space-between;align-items:center;margin-top:12px;font-size:0.85rem;color:#666;flex-wrap:wrap;gap:8px}
+.admin-controls{display:flex;gap:6px}
+.btn-small{padding:4px 8px;font-size:0.75rem;background:var(--blue-1);color:var(--white);border:none;border-radius:4px;cursor:pointer}
+.btn-small:hover{background:var(--blue-2)}
+.no-reviews{text-align:center;color:#999;padding:24px;font-style:italic}
+
+/* Review form */
+.review-form-container{background:#f9f9f9;border-radius:8px;padding:20px;margin-bottom:16px}
+.review-form-container h4{margin:0 0 12px;color:var(--blue-1)}
+.review-form input,.review-form textarea,.review-form select{
+  width:100%;
+  padding:10px;
+  margin-bottom:12px;
+  border:1px solid #ddd;
+  border-radius:6px;
+  font-family:inherit;
+  font-size:0.95rem;
+}
+.review-form textarea{min-height:100px;resize:vertical}
+.rating-input{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.rating-input label{font-weight:500;white-space:nowrap}
+.rating-input select{width:auto;margin:0}
+
+/* Admin panel */
+.admin-panel{text-align:center;margin-top:16px}
+.admin-toggle{background:#555;padding:8px 16px}
+.admin-toggle:hover{background:#777}
+
+/* RTL support for Hebrew */
+[dir="rtl"] body{direction:rtl}
+[dir="rtl"] .review-card{border-left:none;border-right:4px solid var(--blue-2)}
+
+/* language video shown in corner */
+.lang-video{display:block;object-fit:cover;pointer-events:none;background:transparent;border-radius:4px;flex:0 0 auto;align-self:center;height:100%;width:auto;aspect-ratio:1/1}
+[dir="rtl"] .lang-video{order:2}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .site-header{flex-direction:column;height:auto;gap:8px;padding:12px}
+  .brand{text-align:center}
+  .controls{flex-direction:row;width:100%;justify-content:center;flex-wrap:wrap}
+  .controls select{width:auto;min-width:150px}
+  .lang-video{height:48px;width:48px;max-height:48px;max-width:48px;flex-shrink:0}
+  .hero{min-height:60vh;padding:20px 0}
+  .hero-overlay{padding:20px;margin:10px}
+  .projects-list{grid-template-columns:1fr;gap:16px}
+  .project-detail{padding:16px}
+  .downloads{flex-direction:column}
+  .downloads .btn{width:100%;text-align:center}
+  .review-header{flex-direction:column;align-items:flex-start}
+  .rating-input{flex-direction:column;align-items:flex-start}
+  .rating-input select{width:100%}
+}
+
+@media (max-width: 480px) {
+  .brand h1{font-size:1rem}
+  .hero-overlay h2{font-size:1.3rem}
+  .project-detail h2{font-size:1.4rem}
+  .review-card{padding:12px}
+}
+

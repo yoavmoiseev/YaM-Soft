@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Projects — YaM SOFT</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <h1>YaM SOFT — Projects</h1>
+      <p>Detailed information about our solutions</p>
+    </div>
+    <div class="controls">
+      <a href="index.html" class="btn">← Back to main</a>
+    </div>
+  </header>
+
+  <main class="projects-detail">
+    <section id="projectsContainer"></section>
+  </main>
+
+  <footer>
+    <p>© YaM SOFT</p>
+  </footer>
+
+  <script src="js/reviews.js"></script>
+  <script>
+    const lang = 'en';
+    async function loadData(){
+      const [projectsRes, localeRes] = await Promise.all([
+        fetch('projects.json'),
+        fetch('locales/en.json')
+      ]);
+      const projects = await projectsRes.json();
+      const locale = await localeRes.json();
+      const container = document.getElementById('projectsContainer');
+      
+      projects.forEach(p => {
+        const entry = locale.projects.items[p.key] || {};
+        
+        const projectDiv = document.createElement('div');
+        projectDiv.className = 'project-detail';
+        projectDiv.id = p.id;
+        
+        const title = document.createElement('h2');
+        title.textContent = entry.title || p.key;
+        
+        const desc = document.createElement('p');
+        desc.className = 'project-description';
+        desc.textContent = entry.desc || '';
+        
+        const video = document.createElement('video');
+        video.className = 'project-detail-video';
+        video.autoplay = true;
+        video.muted = true;
+        video.loop = true;
+        video.playsInline = true;
+        const source = document.createElement('source');
+        source.src = p.demoVideo;
+        source.type = 'video/mp4';
+        video.appendChild(source);
+        
+        const downloads = document.createElement('div');
+        downloads.className = 'downloads';
+        
+        // Video Instructions
+        if(p.videoInstructions){
+          const videoInstLink = document.createElement('a');
+          videoInstLink.className = 'btn';
+          videoInstLink.href = p.videoInstructions;
+          videoInstLink.target = '_blank';
+          videoInstLink.textContent = locale.projects.videoInstructions;
+          downloads.appendChild(videoInstLink);
+        }
+        
+        // Visit Site
+        if(p.siteUrl){
+          const siteLink = document.createElement('a');
+          siteLink.className = 'btn';
+          siteLink.href = p.siteUrl;
+          siteLink.target = '_blank';
+          siteLink.textContent = locale.projects.visitSite;
+          downloads.appendChild(siteLink);
+        }
+        
+        // Desktop Download (optional)
+        if(p.desktopDownload){
+          const dlLink = document.createElement('a');
+          dlLink.className = 'btn';
+          dlLink.href = p.desktopDownload;
+          dlLink.textContent = locale.projects.desktopDownload;
+          downloads.appendChild(dlLink);
+        }
+        
+        projectDiv.appendChild(title);
+        projectDiv.appendChild(desc);
+        projectDiv.appendChild(video);
+        projectDiv.appendChild(downloads);
+        
+        // Reviews section
+        const reviewsSection = document.createElement('div');
+        reviewsSection.className = 'reviews-section';
+        reviewsSection.innerHTML = `
+          <h3>${locale.reviews.title}</h3>
+          <div class="reviews-list" data-project="${p.id}"></div>
+          <div class="review-form-container">
+            <h4>${locale.reviews.addReview}</h4>
+            <form class="review-form" data-project="${p.id}">
+              <input type="text" name="name" placeholder="${locale.reviews.name}" required>
+              <input type="text" name="position" placeholder="${locale.reviews.position}" required>
+              <textarea name="message" placeholder="${locale.reviews.message}" required></textarea>
+              <div class="rating-input">
+                <label>${locale.reviews.rating}:</label>
+                <select name="rating" required>
+                  <option value="5">⭐⭐⭐⭐⭐ (5)</option>
+                  <option value="4">⭐⭐⭐⭐ (4)</option>
+                  <option value="3">⭐⭐⭐ (3)</option>
+                  <option value="2">⭐⭐ (2)</option>
+                  <option value="1">⭐ (1)</option>
+                </select>
+              </div>
+              <button type="submit" class="btn">${locale.reviews.submit}</button>
+            </form>
+          </div>
+          <div class="admin-panel">
+            <button class="btn admin-toggle">${locale.reviews.adminMode}</button>
+          </div>
+        `;
+        projectDiv.appendChild(reviewsSection);
+        
+        container.appendChild(projectDiv);
+      });
+      
+      // Initialize reviews system
+      if(window.ReviewsManager){
+        window.ReviewsManager.init(lang, locale.reviews);
+      }
+    }
+    
+    loadData();
+  </script>
+</body>
+</html>

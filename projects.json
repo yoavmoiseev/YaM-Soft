@@ -1,0 +1,25 @@
+[
+  {
+    "id": "p1",
+    "key": "schoolAutoScheduler",
+    "demoVideo": "video/schoolautoscheduler-demo.mp4",
+    "videoInstructions": "https://youtube.com/watch?v=YOUR_VIDEO_ID",
+    "siteUrl": "https://your-site.com/schoolautoscheduler",
+    "desktopDownload": "assets/schoolautoscheduler.zip"
+  },
+  {
+    "id": "p2",
+    "key": "schoolAutoExam",
+    "demoVideo": "video/schoolautoexam-demo.mp4",
+    "videoInstructions": "https://youtube.com/watch?v=YOUR_VIDEO_ID",
+    "siteUrl": "https://your-site.com/schoolautoexam",
+    "desktopDownload": "assets/schoolautoexam.zip"
+  },
+  {
+    "id": "p3",
+    "key": "schoolChat",
+    "demoVideo": "video/schoolchat-demo.mp4",
+    "videoInstructions": "https://youtube.com/watch?v=YOUR_VIDEO_ID",
+    "siteUrl": "https://your-site.com/schoolchat"
+  }
+]

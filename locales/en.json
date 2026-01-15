@@ -1,0 +1,13 @@
+{
+  "site":{"title":"YaM SOFT","tag":"Software & Solutions"},
+  "hero":{"title":"YoavMoiseev SOFT - software for your business","desc":"Modern Solution, reliable, beautiful."},
+  "projects":{"title":"Projects","learnMore":"Learn More","videoInstructions":"📹 Video Instructions","visitSite":"🌐 Visit Website","desktopDownload":"💾 Download Desktop Version","items":{
+    "schoolAutoScheduler":{"title":"SchoolAutoScheduler","desc":"Automatic timetable builder for schools and colleges. Builds conflict-free schedules for classes and teachers."},
+    "schoolAutoExam":{"title":"SchoolAutoExam","desc":"Automatic exam generation, checking, and grading system. Provides fast and fair assessment for students."},
+    "schoolChat":{"title":"SchoolChat","desc":"Simple classroom chat for student communication. Allows students to ask questions and communicate during lessons."}
+  }},
+  "reviews":{"title":"Reviews","addReview":"Add Review","name":"Name/Initials","position":"Position","message":"Recommendation Text","rating":"Rating","submit":"Submit","adminMode":"Edit Mode","editMode":"Edit","deleteReview":"Delete","moveUp":"Move Up","noReviews":"No reviews yet. Be the first!"},
+  "contact":{"title":"Contact","formTitle":"Contact Us","name":"Your name","email":"Your email","project":"Select project","subject":"Subject (write project name in the title)","message":"Your message","submit":"Send","general":"General question"},
+  "cv":{"title":"CV / Resume","desc":"Download resume:","link":"CV (PDF)","file":"assets/CV-en.pdf"},
+  "footer":"© YaM SOFT"
+}

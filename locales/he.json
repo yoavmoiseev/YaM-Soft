@@ -1,0 +1,13 @@
+{
+  "site":{"title":"YaM SOFT","tag":"פתרונות תוכנה"},
+  "hero":{"title":"בס''ד עוד לא הסוף... עוברים את ים סוף","desc":" יואב מוייסיב (SOFT)"},
+  "projects":{"title":"פרויקטים","learnMore":"לפרטים נוספים","videoInstructions":"📹 הוראות וידאו","visitSite":"🌐 בקר באתר","desktopDownload":"💾 הורד גרסת שולחן עבודה","items":{
+    "schoolAutoScheduler":{"title":"SchoolAutoScheduler","desc":"בונה מערכת שעות אוטומטית לבתי-ספר ומכללות."},
+    "schoolAutoExam":{"title":"SchoolAutoExam","desc":"מערכת ליצירה, בדיקה ודירוג אוטומטי של מבחנים. מספקת הערכה מהירה והוגנת לתלמידים."},
+    "schoolChat":{"title":"SchoolChat","desc":"צ'אט כיתתי פשוט לתקשורת בין תלמידים ומורה."}
+  }},
+  "reviews":{"title":"ביקורות","addReview":"הוספת ביקורת","name":"שם/ראשי תיבות","position":"תפקיד","message":"טקסט המלצה","rating":"דירוג","submit":"שלח","adminMode":"מצב עריכה","editMode":"ערוך","deleteReview":"מחק","moveUp":"העלה למעלה","noReviews":"אין ביקורות עדיין. היה הראשון!"},
+  "contact":{"title":"יצירת קשר","formTitle":"צור קשר","name":"שמך","email":"האימייל שלך","project":"בחר פרויקט","subject":"נושא (כתוב את שם הפרויקט בכותרת)","message":"ההודעה שלך","submit":"שלח","general":"שאלה כללית"},
+  "cv":{"title":"קורות חיים","desc":"הורד קורות חיים:","link":"CV (PDF)","file":"assets/CV-he.pdf"},
+  "footer":"© ימ סוףט" 
+}
