@@ -65,14 +65,50 @@
         const downloads = document.createElement('div');
         downloads.className = 'downloads';
         
-        // Video Instructions
+        // Video Instructions (Dropdown)
         if(p.videoInstructions){
-          const videoInstLink = document.createElement('a');
-          videoInstLink.className = 'btn';
-          videoInstLink.href = p.videoInstructions;
-          videoInstLink.target = '_blank';
-          videoInstLink.textContent = locale.projects.videoInstructions;
-          downloads.appendChild(videoInstLink);
+          const videoWrapper = document.createElement('div');
+          videoWrapper.style.display = 'inline-block';
+          
+          const videoSelect = document.createElement('select');
+          videoSelect.className = 'btn';
+          videoSelect.style.cursor = 'pointer';
+          videoSelect.style.padding = '10px';
+          
+          const defaultOption = document.createElement('option');
+          defaultOption.value = '';
+          defaultOption.textContent = locale.projects.videoInstructions;
+          defaultOption.disabled = true;
+          defaultOption.selected = true;
+          videoSelect.appendChild(defaultOption);
+          
+          const baseVideoUrl = 'https://drive.google.com/file/d/1mhcCemGvhb8_mL_KqoxjXVK_-CSNkf-Y/view';
+          const chapters = [
+            { title: 'הצגת המוצר', time: 0 },
+            { title: 'כניסה למערכת', time: 1290 },
+            { title: 'הזנת נתונים', time: 1620 },
+            { title: 'בניית מערכת', time: 3445 },
+            { title: 'הגדרות כלליות', time: 4455 },
+            { title: 'שמירה בתור PDF', time: 5294 },
+            { title: 'יצוא לקובץ אקסל', time: 5630 }
+          ];
+          
+          chapters.forEach(chapter => {
+            const option = document.createElement('option');
+            option.value = baseVideoUrl + '?t=' + chapter.time + 's';
+            option.textContent = chapter.title;
+            videoSelect.appendChild(option);
+          });
+          
+          videoSelect.addEventListener('change', function() {
+            if(this.value) {
+              window.open(this.value, '_blank');
+              this.selectedIndex = 0;
+            }
+          });
+          
+          videoWrapper.appendChild(videoSelect);
+          downloads.appendChild(videoWrapper);
         }
         
         // Visit Site

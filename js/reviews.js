@@ -2,7 +2,7 @@
 (function(){
   'use strict';
   
-  const ADMIN_PASSWORD = 'admin123'; // Change this to a secure password
+  const ADMIN_PASSWORD = 'rewrew'; // Change this to a secure password
   let isAdminMode = false;
   let locale = {};
   let lang = 'ru';

@@ -1,6 +1,25 @@
 // Minimal app.js: loads locales, projects, handles language switching, likes and forms.
 (function(){
-  const defaultLang = localStorage.getItem('lang') || 'ru';
+  // Auto-detect browser language
+  function detectBrowserLanguage() {
+    const stored = localStorage.getItem('lang');
+    if(stored) return stored;
+    
+    try {
+      const browserLang = navigator.language || navigator.userLanguage || '';
+      const langCode = browserLang.toLowerCase().split('-')[0];
+      
+      if(langCode === 'ru') return 'ru';
+      if(langCode === 'en') return 'en';
+      if(langCode === 'he' || langCode === 'iw') return 'he';
+      
+      return 'he'; // Default to Hebrew
+    } catch(e) {
+      return 'he'; // Default to Hebrew on error
+    }
+  }
+  
+  const defaultLang = detectBrowserLanguage();
   const langSelect = document.getElementById('langSelect');
   const rootEl = document.documentElement;
   let locales = {};
