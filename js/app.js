@@ -40,14 +40,6 @@
     document.getElementById('heroDesc').textContent = L.hero.desc;
     document.getElementById('projectsTitle').textContent = L.projects.title;
     document.getElementById('contactTitle').textContent = L.contact.title;
-    document.getElementById('contactFormTitle').textContent = L.contact.formTitle;
-    document.getElementById('contactName').placeholder = L.contact.name;
-    document.getElementById('contactEmailInput').placeholder = L.contact.email;
-    document.getElementById('contactProjectPlaceholder').textContent = L.contact.project;
-    document.getElementById('contactGeneral').textContent = L.contact.general;
-    document.getElementById('contactSubject').placeholder = L.contact.subject;
-    document.getElementById('contactMessage').placeholder = L.contact.message;
-    document.getElementById('contactSubmit').textContent = L.contact.submit;
     document.getElementById('cvTitle').textContent = L.cv.title;
     document.getElementById('cvDesc').innerHTML = L.cv.desc + ' <a id="cvLink" href="' + L.cv.file + '" download>' + L.cv.link + '</a>';
     document.getElementById('footerText').textContent = L.footer;
@@ -110,25 +102,7 @@
     })
   }
 
-  function setupContactForm(){
-    const form = document.getElementById('contactForm');
-    // If form uses Netlify (data-netlify) allow real submit when deployed.
-    // For local testing (localhost or file:) intercept and show a message instead of submitting.
-    form.addEventListener('submit', e=>{
-      const isNetlify = form.dataset.netlify !== undefined;
-      const runningLocally = location.hostname === 'localhost' || location.protocol === 'file:';
-      if(isNetlify && runningLocally){
-        e.preventDefault();
-        const notice = document.getElementById('contactNotice');
-        notice.textContent = 'Форма настроена для Netlify. При локальной проверке сообщение не отправится — задеплойте сайт на Netlify или настройте Formspree.';
-        return;
-      }
-      if(!form.action && !isNetlify){
-        e.preventDefault();
-        alert('Настройте endpoint формы в README (Formspree или Netlify Forms)');
-      }
-    })
-  }
+
 
   async function init(){
     await loadLocales();
@@ -157,7 +131,6 @@
     }catch(err){
       console.error('Failed to load projects.json or to render projects:', err);
     }
-    setupContactForm();
   }
 
   // Create or update the corner language video.
