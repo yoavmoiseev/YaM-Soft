@@ -36,7 +36,7 @@
     const L = locales[lang] || locales['ru'];
     document.getElementById('siteTitle').textContent = L.site.title;
     document.getElementById('siteTag').textContent = L.site.tag;
-    document.getElementById('heroTitle').textContent = L.hero.title;
+    document.getElementById('heroTitle').innerHTML = L.hero.title;
     document.getElementById('heroDesc').textContent = L.hero.desc;
     document.getElementById('projectsTitle').textContent = L.projects.title;
     document.getElementById('contactTitle').textContent = L.contact.title;

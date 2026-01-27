@@ -74,7 +74,7 @@
           videoInstLink.textContent = locale.projects.videoInstructions;
           downloads.appendChild(videoInstLink);
         }
-        
+
         // Visit Site
         if(p.siteUrl){
           const siteLink = document.createElement('a');
@@ -84,9 +84,15 @@
           siteLink.textContent = locale.projects.visitSite;
           downloads.appendChild(siteLink);
         }
-        
-        // Desktop Download (optional)
-        if(p.desktopDownload){
+
+        // Desktop Download (optional) - Drive override for SchoolAutoScheduler, fallback to project desktopDownload
+        if(p.key === 'schoolAutoScheduler' || p.id === 'p1'){
+          const dlLink = document.createElement('a');
+          dlLink.className = 'btn';
+          dlLink.href = 'https://drive.google.com/uc?export=download&id=1s3L6pfOy6rat2gvHNsttsskc6f7UdGY1';
+          dlLink.textContent = locale.projects.desktopDownload;
+          downloads.appendChild(dlLink);
+        } else if(p.desktopDownload){
           const dlLink = document.createElement('a');
           dlLink.className = 'btn';
           dlLink.href = p.desktopDownload;
