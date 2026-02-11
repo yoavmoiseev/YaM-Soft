@@ -48,14 +48,29 @@
     if(lang==='he'){rootEl.setAttribute('dir','rtl');} else {rootEl.removeAttribute('dir');}
   }
 
+  // Detect iOS devices (iPhone, iPad)
+  function isIOS() {
+    return /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+           (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  }
+
   function setHeroImage(lang){
     const candidate = `assets/bg-${lang}.png`;
     document.body.style.backgroundImage = `url('${candidate}')`;
-    // Fit image to full height so the whole photo is visible (no cropping)
-    document.body.style.backgroundSize = 'auto 100%';
-    document.body.style.backgroundPosition = 'top center';
-    document.body.style.backgroundRepeat = 'no-repeat';
-    document.body.style.backgroundAttachment = 'fixed';
+    
+    // iOS devices need different background settings due to WebKit limitations
+    if(isIOS()){
+      document.body.style.backgroundSize = 'cover';
+      document.body.style.backgroundPosition = 'center center';
+      document.body.style.backgroundRepeat = 'no-repeat';
+      document.body.style.backgroundAttachment = 'scroll';
+    } else {
+      // Fit image to full height so the whole photo is visible (no cropping)
+      document.body.style.backgroundSize = 'auto 100%';
+      document.body.style.backgroundPosition = 'top center';
+      document.body.style.backgroundRepeat = 'no-repeat';
+      document.body.style.backgroundAttachment = 'fixed';
+    }
   }
 
   async function loadProjects(lang){

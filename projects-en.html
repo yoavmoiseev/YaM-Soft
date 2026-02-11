@@ -168,15 +168,20 @@
         window.ReviewsManager.init(lang, locale.reviews);
       }
       
-      // Scroll to anchor if present in URL
+      // Scroll to anchor if present in URL (with iOS compatibility)
       setTimeout(() => {
         if(window.location.hash) {
           const target = document.querySelector(window.location.hash);
           if(target) {
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            const headerHeight = 80;
+            const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+            window.scrollTo({
+              top: targetPosition,
+              behavior: 'smooth'
+            });
           }
         }
-      }, 100);
+      }, 300);
     }
     
     loadData();
