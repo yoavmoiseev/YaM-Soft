@@ -60,7 +60,7 @@
     
     // iOS devices need different background settings due to WebKit limitations
     if(isIOS()){
-      document.body.style.backgroundSize = 'cover';
+      document.body.style.backgroundSize = 'contain';
       document.body.style.backgroundPosition = 'center center';
       document.body.style.backgroundRepeat = 'no-repeat';
       document.body.style.backgroundAttachment = 'scroll';
