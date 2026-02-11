@@ -1,0 +1,2338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Auto-Scheduler - User Manual</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 11pt;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+
+        .cover {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            page-break-after: always;
+        }
+
+        .cover-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+
+        .cover-title {
+            font-size: 36pt;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .cover-subtitle {
+            font-size: 18pt;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .cover-description {
+            font-size: 12pt;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            opacity: 0.9;
+        }
+
+        .cover-info {
+            font-size: 11pt;
+            margin: 10px 0;
+        }
+
+        .cover-creator {
+            margin-top: 40px;
+            font-size: 12pt;
+            opacity: 0.95;
+        }
+
+        .toc {
+            padding: 40px;
+            page-break-after: always;
+        }
+
+        .toc h1 {
+            font-size: 28pt;
+            color: #667eea;
+            border-bottom: 3px solid #764ba2;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        .toc ul {
+            list-style: none;
+        }
+
+        .toc li {
+            margin: 15px 0;
+            display: flex;
+            align-items: baseline;
+        }
+
+        .toc-number {
+            font-weight: bold;
+            color: #667eea;
+            min-width: 40px;
+        }
+
+        .toc-title {
+            flex: 1;
+        }
+
+        .toc-dots {
+            flex: 1;
+            border-bottom: 2px dotted #ccc;
+            margin: 0 10px;
+            min-width: 50px;
+        }
+
+        .toc-page {
+            color: #764ba2;
+            font-weight: bold;
+        }
+
+        .toc a {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            align-items: baseline;
+            width: 100%;
+        }
+
+        .toc a:hover {
+            color: #667eea;
+        }
+
+        .section {
+            padding: 40px;
+            page-break-before: always;
+        }
+
+        .section h1 {
+            font-size: 28pt;
+            color: #667eea;
+            border-bottom: 3px solid #764ba2;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        .section h2 {
+            font-size: 20pt;
+            color: #764ba2;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        .section h3 {
+            font-size: 16pt;
+            color: #667eea;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .section p {
+            margin: 10px 0;
+        }
+
+        .section ul, .section ol {
+            margin: 15px 0 15px 30px;
+        }
+
+        .section li {
+            margin: 8px 0;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .feature-card {
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            padding: 20px;
+            background: #f8f9ff;
+        }
+
+        .feature-card h3 {
+            color: #667eea;
+            margin-top: 0;
+        }
+
+        .highlight-box {
+            background: #fff9c4;
+            border-left: 4px solid #ffd600;
+            padding: 15px;
+            margin: 20px 0;
+        }
+
+        .success-box {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 15px;
+            margin: 20px 0;
+        }
+
+        .warning-box {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 15px;
+            margin: 20px 0;
+        }
+
+        .error-box {
+            background: #ffebee;
+            border-left: 4px solid #f44336;
+            padding: 15px;
+            margin: 20px 0;
+        }
+
+        .info-box {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            margin: 20px 0;
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 9pt;
+            font-weight: bold;
+            margin: 0 5px;
+        }
+
+        .badge-success {
+            background: #4caf50;
+            color: white;
+        }
+
+        .badge-warning {
+            background: #ff9800;
+            color: white;
+        }
+
+        .badge-danger {
+            background: #f44336;
+            color: white;
+        }
+
+        .badge-info {
+            background: #2196f3;
+            color: white;
+        }
+
+        .code-block {
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 10pt;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+
+        .no-break {
+            page-break-inside: avoid;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+
+        table tr:nth-child(even) {
+            background: #f8f9ff;
+        }
+
+        .thank-you {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            page-break-before: always;
+        }
+
+        @media print {
+            .section {
+                page-break-before: always;
+            }
+            .cover, .thank-you {
+                page-break-after: always;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cover Page -->
+    <div class="cover">
+        <div class="cover-icon">📅</div>
+        <h1 class="cover-title">School Auto-Scheduler</h1>
+        <p class="cover-subtitle">Complete User Manual for School Administrators</p>
+        <p class="cover-description">
+            A comprehensive guide to creating automated school schedules, managing teachers 
+            and classes with intelligent conflict detection and optimization.
+        </p>
+        <div class="cover-info"><strong>Version:</strong> 2.0</div>
+        <div class="cover-info"><strong>Date:</strong> February 2026</div>
+        <div class="cover-info"><strong>Website:</strong> https://sc.yamsoft.org</div>
+        <div class="cover-creator">
+            <strong>Created by:</strong> Yoav Moiseev<br>
+            <strong>Website:</strong> www.yamsoft.org
+        </div>
+    </div>
+
+    <!-- Table of Contents -->
+    <div class="toc">
+        <h1>📑 Table of Contents</h1>
+        <ul>
+            <li>
+                <a href="#introduction">
+                    <span class="toc-number">1.</span>
+                    <span class="toc-title">Introduction</span>
+                    <span class="toc-dots"></span>
+                    <span class="toc-page">1</span>
+                </a>
+            </li>
+            <li>
+                <a href="#getting-started">
+                    <span class="toc-number">2.</span>
+                    <span class="toc-title">Getting Started</span>
+                    <span class="toc-dots"></span>
+                    <span class="toc-page">2</span>
+                </a>
+            </li>
+            <li>
+                <a href="#creating-schedules">
+                    <span class="toc-number">3.</span>
+                    <span class="toc-title">Creating Schedules</span>
+                    <span class="toc-dots"></span>
+                    <span class="toc-page">3</span>
+                </a>
+            </li>
+            <li>
+                <a href="#features">
+                    <span class="toc-number">4.</span>
+                    <span class="toc-title">Key Features</span>
+                    <span class="toc-dots"></span>
+                    <span class="toc-page">4</span>
+                </a>
+            </li>
+            <li>
+                <a href="#managing-data">
+                    <span class="toc-number">5.</span>
+                    <span class="toc-title">Managing Data</span>
+                    <span class="toc-dots"></span>
+                    <span class="toc-page">5</span>
+                </a>
+            </li>
+            <li>
+                <a href="#constraints">
+                    <span class="toc-number">6.</span>
+                    <span class="toc-title">Constraints & Rules</span>
+                    <span class="toc-dots"></span>
+                    <span class="toc-page">6</span>
+                </a>
+            </li>
+            <li>
+                <a href="#optimization">
+                    <span class="toc-number">7.</span>
+                    <span class="toc-title">Optimization</span>
+                    <span class="toc-dots"></span>
+                    <span class="toc-page">7</span>
+                </a>
+            </li>
+            <li>
+                <a href="#viewing-results">
+                    <span class="toc-number">8.</span>
+                    <span class="toc-title">Viewing Results</span>
+                    <span class="toc-dots"></span>
+                    <span class="toc-page">8</span>
+                </a>
+            </li>
+            <li>
+                <a href="#best-practices">
+                    <span class="toc-number">9.</span>
+                    <span class="toc-title">Best Practices & Tips</span>
+                    <span class="toc-dots"></span>
+                    <span class="toc-page">9</span>
+                </a>
+            </li>
+            <li>
+                <a href="#troubleshooting">
+                    <span class="toc-number">10.</span>
+                    <span class="toc-title">Troubleshooting</span>
+                    <span class="toc-dots"></span>
+                    <span class="toc-page">10</span>
+                </a>
+            </li>
+            <li>
+                <a href="#quick-reference">
+                    <span class="toc-number">11.</span>
+                    <span class="toc-title">Quick Reference</span>
+                    <span class="toc-dots"></span>
+                    <span class="toc-page">11</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Section 1: Introduction -->
+    <div class="section" id="introduction">
+        <h1>1. Introduction</h1>
+
+        <h2>📚 What is School Auto-Scheduler?</h2>
+        <p>
+            School Auto-Scheduler is a powerful, intelligent web-based application designed to automate 
+            the complex task of creating school schedules. It handles teacher assignments 
+            and time slot management while automatically detecting and preventing conflicts.
+        </p>
+
+        <h2>✨ Key Features</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3>🤖 Automatic Scheduling</h3>
+                <p>Intelligent algorithm that automatically assigns lessons to time slots based on constraints and availability.</p>
+            </div>
+            <div class="feature-card">
+                <h3>👨‍🏫 Teacher Management</h3>
+                <p>Manage teachers with subject assignments, weekly hours, and availability time slots.</p>
+            </div>
+            <div class="feature-card">
+                <h3>👥 Subgroup Support</h3>
+                <p>Split classes into subgroups or levels, with multiple teachers teaching simultaneously to different groups.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🔍 Conflict Detection</h3>
+                <p>Real-time conflict checking prevents teacher double-booking and constraint violations.</p>
+            </div>
+            <div class="feature-card">
+                <h3>📊 Multiple Views</h3>
+                <p>View schedules by group (class) or by teacher for complete transparency.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🌍 Multi-Language</h3>
+                <p>Full support for English, Hebrew (RTL), and Russian with 200+ translated strings.</p>
+            </div>
+            <div class="feature-card">
+                <h3>📄 Export Options</h3>
+                <p>Export schedules to PDF, Excel, or print directly from the browser.</p>
+            </div>
+            <div class="feature-card">
+                <h3>⚙️ Flexible Constraints</h3>
+                <p>Configure max consecutive lessons, max lessons per day, and custom rules.</p>
+            </div>
+        </div>
+
+        <h2>💻 System Requirements</h2>
+        <ul>
+            <li><strong>Browser:</strong> Modern web browser (Chrome, Firefox, Safari, Edge)</li>
+            <li><strong>Internet Connection:</strong> Required for online version</li>
+            <li><strong>Screen Resolution:</strong> 1024x768 or higher recommended</li>
+            <li><strong>JavaScript:</strong> Must be enabled</li>
+        </ul>
+
+        <h2>🌐 Where to Access</h2>
+        <div class="info-box">
+            <strong>🔗 Online Version:</strong><br>
+            Visit <strong>https://sc.yamsoft.org</strong> to access the system from any device with internet connection.
+            No installation required!
+        </div>
+
+        <h2>💾 Offline/Standalone Version</h2>
+        <div class="highlight-box">
+            <strong>🏆 Perfect for Schools Without Reliable Internet!</strong><br><br>
+            The School Auto-Scheduler is also available as a standalone, offline version that runs entirely on your local computer or school server:
+            
+            <h3>Why Choose Offline Version?</h3>
+            <ul>
+                <li><strong>Maximum Data Security:</strong> All your data stays on your own server</li>
+                <li><strong>No Internet Required:</strong> Works perfectly in remote areas or areas with unreliable connectivity</li>
+                <li><strong>Faster Performance:</strong> No network delays, instant response times</li>
+                <li><strong>Complete Control:</strong> You own and control all aspects of the system</li>
+                <li><strong>Custom Deployment:</strong> Can be installed on your school's existing infrastructure</li>
+            </ul>
+
+            <h3>Especially Ideal For:</h3>
+            <ul>
+                <li><strong>Religious Schools:</strong> Orthodox, Ultra-Orthodox, and religious seminaries that prefer no internet access</li>
+                <li><strong>Haredi/Ultra-Orthodox Jewish Communities:</strong> Schools serving communities with strict internet policies</li>
+                <li>Schools in remote or rural locations</li>
+                <li>Institutions with strict data privacy requirements</li>
+                <li>Organizations that prefer on-premise solutions</li>
+                <li>Schools with limited or expensive internet connectivity</li>
+            </ul>
+
+            <strong>📥 Download Offline Version:</strong><br>
+            <a href="https://drive.google.com/file/d/1SkE4XTJ2p_L4uMdK-DMtpbrP3NuCQjuf/view?usp=sharing" target="_blank" style="color: #764ba2; font-weight: bold;">Download ZIP Package</a><br><br>
+
+            <strong>📞 Contact Information:</strong><br>
+            For installation support, custom deployment options, or questions, please visit:<br>
+            <strong>www.yamsoft.org</strong>
+        </div>
+    </div>
+
+    <!-- Section 2: Getting Started -->
+    <div class="section" id="getting-started">
+        <h1>2. Getting Started</h1>
+
+        <h2>🚀 Quick Start Guide</h2>
+        <p>Follow these 5 simple steps to create your first schedule:</p>
+
+        <div class="no-break">
+            <h3><span class="step-number">1</span> Sign Up or Log In</h3>
+            <p>Create a new account or log in with existing credentials.</p>
+        </div>
+
+        <div class="no-break">
+            <h3><span class="step-number">2</span> Configure Settings</h3>
+            <p>Set up basic parameters like number of lessons, language, and constraints.</p>
+        </div>
+
+        <div class="no-break">
+            <h3><span class="step-number">3</span> Add Data</h3>
+            <p>Enter teachers, groups (classes), and subjects into the system.</p>
+        </div>
+
+        <div class="no-break">
+            <h3><span class="step-number">4</span> Generate Schedule</h3>
+            <p>Click "Autofill" to automatically create an optimized schedule.</p>
+        </div>
+
+        <div class="no-break">
+            <h3><span class="step-number">5</span> Review and Export</h3>
+            <p>View the generated schedule and export to PDF or Excel.</p>
+        </div>
+
+        <h2>📝 Sign Up Process</h2>
+        <ol>
+            <li>Visit <strong>https://sc.yamsoft.org</strong></li>
+            <li>Click <strong>"Sign Up"</strong> button</li>
+            <li>Enter your details:
+                <ul>
+                    <li>Username (will be used for login)</li>
+                    <li>Password (minimum 6 characters)</li>
+                    <li>Email (optional, for password recovery)</li>
+                </ul>
+            </li>
+            <li>Click <strong>"Create Account"</strong></li>
+            <li>You'll be automatically logged in</li>
+        </ol>
+
+        <h2>🔐 Login Process</h2>
+        <ol>
+            <li>Visit <strong>https://sc.yamsoft.org</strong></li>
+            <li>Enter your <strong>username</strong> and <strong>password</strong></li>
+            <li>Click <strong>"Log In"</strong></li>
+            <li>You'll be redirected to the main dashboard</li>
+        </ol>
+
+        <div class="info-box">
+            <strong>💡 Tip:</strong> Your session will remain active for 7 days. After that, you'll need to log in again for security reasons.
+        </div>
+
+        <h2>🎛️ Dashboard Overview</h2>
+        <p>After logging in, you'll see the main dashboard with several tabs:</p>
+
+        <table>
+            <tr>
+                <th>Tab Name</th>
+                <th>Purpose</th>
+            </tr>
+            <tr>
+                <td><strong>Teachers</strong></td>
+                <td>Add, edit, and manage teacher profiles with subjects and availability</td>
+            </tr>
+            <tr>
+                <td><strong>Groups</strong></td>
+                <td>Create and manage student groups (classes)</td>
+            </tr>
+            <tr>
+                <td><strong>Subjects</strong></td>
+                <td>Define subjects with hours per week for each group</td>
+            </tr>
+            <tr>
+                <td><strong>Group Scheduler</strong></td>
+                <td>View and generate schedules for each class/group</td>
+            </tr>
+            <tr>
+                <td><strong>Teacher Scheduler</strong></td>
+                <td>View individual teacher schedules</td>
+            </tr>
+            <tr>
+                <td><strong>Configuration</strong></td>
+                <td>Set system preferences and constraints</td>
+            </tr>
+            <tr>
+                <td><strong>Import/Export</strong></td>
+                <td>Import from Excel or export all data</td>
+            </tr>
+        </table>
+
+        <h2>🎬 Creating Your First Schedule</h2>
+        <div class="success-box">
+            <strong>Example Scenario:</strong> Let's create a simple schedule for "Grade 10-A" with 3 teachers and 5 subjects.
+            
+            <ol>
+                <li><strong>Add Teachers:</strong>
+                    <ul>
+                        <li>John Smith (Math, Physics)</li>
+                        <li>Sarah Johnson (English, History)</li>
+                        <li>David Lee (Chemistry)</li>
+                    </ul>
+                </li>
+                <li><strong>Create Group:</strong> "Grade 10-A"</li>
+                <li><strong>Add Subjects:</strong>
+                    <ul>
+                        <li>Math - 5 hours/week</li>
+                        <li>English - 4 hours/week</li>
+                        <li>Physics - 3 hours/week</li>
+                        <li>Chemistry - 3 hours/week</li>
+                        <li>History - 2 hours/week</li>
+                    </ul>
+                </li>
+                <li><strong>Generate:</strong> Go to Group Scheduler, select "Grade 10-A", click "Autofill"</li>
+                <li><strong>Done!</strong> Your schedule is ready!</li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- Section 3: Creating Schedules -->
+    <div class="section" id="creating-schedules">
+        <h1>3. Creating Schedules</h1>
+
+        <h2>📊 Input Data Overview</h2>
+        <p>The School Auto-Scheduler requires three main types of data to create schedules:</p>
+
+        <h3>1️⃣ Teachers Information</h3>
+        <ul>
+            <li><strong>Name:</strong> Teacher's full name</li>
+            <li><strong>Subjects:</strong> List of subjects they teach with hours per week and group assignments</li>
+            <li><strong>Weekly Hours:</strong> Time ranges when teacher is available (format: Day:HH:MM-HH:MM)</li>
+            <li><strong>Availability:</strong> Alternative format using lesson numbers (format: Day:1-5)</li>
+        </ul>
+
+        <div class="code-block">
+<strong>Example Teacher Entry:</strong>
+Name: John Smith
+Subjects:
+  - Math (5 hours, Grade 10-A)
+  - Physics (3 hours, Grade 10-A)
+Weekly Hours:
+  Monday:08:00-12:00; Tuesday:08:00-15:00; Wednesday:13:00-17:00
+        </div>
+
+        <h3>2️⃣ Groups (Classes)</h3>
+        <ul>
+            <li>Simply a list of class/group names</li>
+            <li>Examples: "Grade 10-A", "Grade 11-B", "Advanced Math Group"</li>
+        </ul>
+
+        <h3>3️⃣ Subjects</h3>
+        <ul>
+            <li><strong>Name:</strong> Subject name (Math, English, etc.)</li>
+            <li><strong>Group:</strong> Which class/group this subject belongs to</li>
+            <li><strong>Hours Per Week:</strong> How many lessons per week</li>
+        </ul>
+
+        <h2>⚙️ Basic Scheduling Rules</h2>
+        <div class="info-box">
+            <strong>Important Rules the System Follows:</strong>
+            <ul>
+                <li>✅ Teachers cannot be in two places at once (no double-booking)</li>
+                <li>✅ Teachers only work during their available time slots</li>
+                <li>✅ Total weekly hours match the subject requirements</li>
+                <li>✅ Constraints like max consecutive lessons are respected</li>
+                <li>✅ Each subject is assigned to the correct group</li>
+            </ul>
+        </div>
+
+        <h2>📝 Step-by-Step: Adding Teachers</h2>
+        <ol>
+            <li>Click on the <strong>"Teachers"</strong> tab</li>
+            <li>Click <strong>"Add Teacher"</strong> button</li>
+            <li>Fill in teacher name</li>
+            <li>Add subjects by clicking <strong>"Add Subject"</strong>:
+                <ul>
+                    <li>Select subject from dropdown</li>
+                    <li>Enter hours per week</li>
+                    <li>Select group (or leave empty for all groups)</li>
+                </ul>
+            </li>
+            <li>Set teacher availability using <strong>Weekly Hours</strong> (recommended):
+                <ul>
+                    <li>Format: <code>Day:HH:MM-HH:MM; Day:HH:MM-HH:MM</code></li>
+                    <li>Example: <code>Monday:08:00-15:00; Tuesday:09:00-14:00</code></li>
+                    <li>You can have multiple time ranges per day</li>
+                </ul>
+            </li>
+            <li>OR use <strong>Availability</strong> (lesson numbers):
+                <ul>
+                    <li>Format: <code>Day:1-5; Day:3-8</code></li>
+                    <li>Example: <code>Monday:1-6; Wednesday:1-6; Friday:1-6</code></li>
+                </ul>
+            </li>
+            <li>Click <strong>"Save"</strong></li>
+        </ol>
+
+        <div class="warning-box">
+            <strong>⚠️ Priority Note:</strong> If both "Weekly Hours" and "Availability" are filled, the system will use <strong>Weekly Hours</strong> and ignore Availability. Weekly Hours takes priority!
+        </div>
+
+        <h2>📝 Step-by-Step: Adding Groups</h2>
+        <ol>
+            <li>Click on the <strong>"Groups"</strong> tab</li>
+            <li>Click <strong>"Add Group"</strong> button</li>
+            <li>Enter group name (e.g., "Grade 10-A")</li>
+            <li>Click <strong>"Save"</strong></li>
+            <li>Repeat for all classes/groups in your school</li>
+        </ol>
+
+        <h2>📝 Step-by-Step: Adding Subjects</h2>
+        <ol>
+            <li>Click on the <strong>"Subjects"</strong> tab</li>
+            <li>Click <strong>"Add Subject"</strong> button</li>
+            <li>Enter subject name (e.g., "Mathematics")</li>
+            <li>Select the group this subject belongs to</li>
+            <li>Enter hours per week (e.g., 5)</li>
+            <li>Click <strong>"Save"</strong></li>
+            <li>Repeat for all subjects</li>
+        </ol>
+
+        <div class="highlight-box">
+            <strong>💡 Pro Tip:</strong> Make sure each subject has at least one teacher assigned to it (in the Teachers section). Otherwise, the autofill will report an error!
+        </div>
+
+        <h2>🔨 Generating the Schedule</h2>
+        <ol>
+            <li>Go to <strong>"Group Scheduler"</strong> tab</li>
+            <li>Select a group from the dropdown menu</li>
+            <li>Click <strong>"Autofill"</strong> button</li>
+            <li>Confirm the action (it will rebuild the schedule)</li>
+            <li>Wait a moment while the algorithm works</li>
+            <li>The schedule will appear in the grid!</li>
+        </ol>
+
+        <div class="success-box">
+            <strong>✅ Success!</strong> If everything is configured correctly, you should see a complete schedule with all lessons filled in, color-coded by subject.
+        </div>
+
+        <h2>❌ What If Generation Fails?</h2>
+        <div class="error-box">
+            Common reasons for autofill failure:
+            <ul>
+                <li><strong>No teacher assigned:</strong> Every subject needs a teacher</li>
+                <li><strong>Insufficient availability:</strong> Teachers don't have enough time slots</li>
+                <li><strong>Too many hours:</strong> The total required hours exceed available time slots</li>
+                <li><strong>Conflicting constraints:</strong> The constraints are too strict and impossible to satisfy</li>
+            </ul>
+            
+            <strong>Solution:</strong> Check the error messages, adjust data accordingly, and try again.
+        </div>
+    </div>
+
+    <!-- Section 4: Key Features -->
+    <div class="section" id="features">
+        <h1>4. Key Features</h1>
+
+        <h2>🔍 Automatic Conflict Detection</h2>
+        <p>
+            The system continuously monitors teacher availability and automatically prevents conflicts:
+        </p>
+        <ul>
+            <li><strong>Double-booking Prevention:</strong> A teacher cannot be assigned to two different classes at the same time</li>
+            <li><strong>Real-time Checking:</strong> When you manually edit a lesson, conflicts are detected immediately</li>
+            <li><strong>Visual Indicators:</strong> Conflicting lessons are highlighted in red</li>
+            <li><strong>Error Messages:</strong> Clear descriptions of what conflict occurred and how to fix it</li>
+        </ul>
+
+        <div class="info-box">
+            <strong>How it works:</strong> The system maintains a "busy map" that tracks every teacher's schedule across all groups. Before assigning a lesson, it checks if the teacher is available at that time slot.
+        </div>
+
+        <h2>👨‍🏫 Teacher Availability Management</h2>
+        <p>Teachers can define their availability in two ways:</p>
+
+        <h3>Method 1: Weekly Hours (Recommended) ⭐</h3>
+        <div class="code-block">
+Format: Day:HH:MM-HH:MM; Day:HH:MM-HH:MM
+
+Examples:
+- Monday:08:00-12:00; Monday:13:00-17:00
+  (Teacher available Monday morning and afternoon)
+  
+- Tuesday:08:00-15:00; Wednesday:08:00-15:00
+  (Teacher available Tuesday and Wednesday, full day)
+  
+- Thursday:09:30-14:30
+  (Teacher available Thursday, mid-day)
+        </div>
+
+        <div class="success-box">
+            <strong>✅ Advantage:</strong> More flexible! You can specify exact start/end times, and the system automatically converts them to lesson numbers based on your configuration.
+        </div>
+
+        <h3>Method 2: Availability (Lesson Numbers)</h3>
+        <div class="code-block">
+Format: Day:Start-End; Day:Start-End
+
+Examples:
+- Monday:1-6; Wednesday:1-6; Friday:1-6
+  (Teacher available lessons 1-6 on Mon, Wed, Fri)
+  
+- Tuesday:3-8; Thursday:3-8
+  (Teacher available lessons 3-8 on Tue, Thu)
+        </div>
+
+        <h2>👥 Subgroups & Parallel Classes</h2>
+        <div class="highlight-box">
+            <strong>🎯 Advanced Feature: Class Division Support!</strong><br><br>
+            
+            The system supports splitting a single class into multiple subgroups or levels, taught simultaneously by different teachers. This is perfect for:
+            
+            <h3>📚 Common Use Cases:</h3>
+            <ul>
+                <li><strong>Math Levels:</strong> Advanced, Regular, and Remedial groups</li>
+                <li><strong>English Proficiency:</strong> Different levels based on student ability</li>
+                <li><strong>Language Classes:</strong> Native speakers vs. second language learners</li>
+                <li><strong>Electives:</strong> Students choosing different subjects in the same time slot</li>
+            </ul>
+
+            <h3>⚙️ How It Works:</h3>
+            <ol>
+                <li><strong>Create Multiple Teachers:</strong> Define all teachers who will teach parallel lessons</li>
+                <li><strong>Assign Same Subject & Group:</strong> Multiple teachers assigned to the same subject for the same class</li>
+                <li><strong>Smart Scheduling:</strong> The system identifies common available time slots for all teachers</li>
+                <li><strong>Simultaneous Lessons:</strong> Creates lessons where all teachers teach their subgroups at the same time</li>
+                <li><strong>Conflict Detection:</strong> Warns when adding lessons that multiple teachers share</li>
+            </ol>
+
+            <h3>✅ Benefits:</h3>
+            <ul>
+                <li><strong>Automatic Coordination:</strong> Finds time slots where all teachers are available</li>
+                <li><strong>No Double-Booking:</strong> System understands these are parallel, not conflicting lessons</li>
+                <li><strong>Flexible Groups:</strong> Supports any number of subgroups (2, 3, or more)</li>
+                <li><strong>Level-Based Learning:</strong> Enables differentiated instruction</li>
+            </ul>
+
+            <strong>Example:</strong>
+            <ul>
+                <li>Class 10A has Math with 5 hours/week</li>
+                <li>Teacher John teaches advanced group</li>
+                <li>Teacher Sarah teaches regular group</li>
+                <li>Teacher Mike teaches remedial group</li>
+                <li>System schedules all 3 teachers simultaneously for those 5 hours</li>
+            </ul>
+        </div>
+
+        <h2>📚 Subject Requirements</h2>
+        <p>Each subject can specify:</p>
+        <ul>
+            <li><strong>Hours Per Week:</strong> How many lessons needed (e.g., Math: 5 hours)</li>
+            <li><strong>Group Assignment:</strong> Which class this subject belongs to</li>
+            <li><strong>Teacher Assignment:</strong> Which teacher(s) can teach this subject</li>
+        </ul>
+
+        <h2>⏰ Time Slot Management</h2>
+        <p>The system organizes the school week into time slots:</p>
+        
+        <table>
+            <tr>
+                <th>Configuration</th>
+                <th>Default Value</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>Weekdays</td>
+                <td>Mon-Fri</td>
+                <td>Days of the school week</td>
+            </tr>
+            <tr>
+                <td>Number of Lessons</td>
+                <td>8</td>
+                <td>How many lesson periods per day</td>
+            </tr>
+            <tr>
+                <td>Lesson Start Time</td>
+                <td>08:00</td>
+                <td>When the first lesson begins</td>
+            </tr>
+            <tr>
+                <td>Lesson Duration</td>
+                <td>45 minutes</td>
+                <td>Length of each lesson</td>
+            </tr>
+        </table>
+
+        <div class="highlight-box">
+            <strong>Example Schedule:</strong><br>
+            Lesson 1: 08:00-08:45<br>
+            Lesson 2: 08:50-09:35<br>
+            Lesson 3: 09:40-10:25<br>
+            <em>...and so on</em>
+        </div>
+
+        <h2>☕ Break & Lunch Scheduling</h2>
+        <p>Breaks and lunch periods are handled by:</p>
+        <ul>
+            <li>Leaving certain lesson slots empty (e.g., lesson 4 can be lunch)</li>
+            <li>Configuring teacher availability to exclude break times</li>
+            <li>Using constraints to limit lessons around break periods</li>
+        </ul>
+
+        <div class="info-box">
+            <strong>💡 Tip:</strong> If you have a fixed lunch break at lesson 4, make sure no teachers have availability during that time slot.
+        </div>
+
+        <h2>⚙️ Special Constraints</h2>
+        <p>The system supports several constraint types:</p>
+
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3>Max Consecutive Lessons</h3>
+                <p>Prevents a subject from appearing in too many consecutive time slots (e.g., no more than 2 Math lessons in a row).</p>
+                <p><span class="badge badge-info">Default: 2</span></p>
+            </div>
+            <div class="feature-card">
+                <h3>Max Per Day</h3>
+                <p>Limits how many lessons of the same subject can occur in one day (e.g., maximum 3 Math lessons per day).</p>
+                <p><span class="badge badge-info">Default: 3</span></p>
+            </div>
+            <div class="feature-card">
+                <h3>Teacher Workload</h3>
+                <p>Ensures teachers are not overworked by respecting their defined weekly hours and availability.</p>
+                <p><span class="badge badge-success">Automatic</span></p>
+            </div>
+            <div class="feature-card">
+                <h3>Subject Distribution</h3>
+                <p>The algorithm tries to spread lessons evenly throughout the week instead of clustering them.</p>
+                <p><span class="badge badge-success">Automatic</span></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 5: Managing Data -->
+    <div class="section" id="managing-data">
+        <h1>5. Managing Data</h1>
+
+        <h2>📥 Uploading Data</h2>
+        <p>You can input data in two ways: manually through the web interface or by importing from Excel.</p>
+
+        <h3>Manual Entry (Recommended for Beginners)</h3>
+        <ol>
+            <li>Use the <strong>Teachers</strong>, <strong>Groups</strong>, and <strong>Subjects</strong> tabs</li>
+            <li>Click "Add" buttons to create new entries</li>
+            <li>Fill in the forms and save</li>
+            <li>This is the easiest way to get started!</li>
+        </ol>
+
+        <h3>Excel Import (Recommended for Large Schools)</h3>
+        <ol>
+            <li>Go to the <strong>"Import/Export"</strong> tab</li>
+            <li>Download the Excel template or use an example file</li>
+            <li>Fill in the Excel file with your data</li>
+            <li>Upload the file through the import interface</li>
+            <li>The system will validate and import all data</li>
+        </ol>
+
+        <div class="warning-box">
+            <strong>⚠️ Important:</strong> Excel import will overwrite existing data. Make sure to back up your current data before importing!
+        </div>
+
+        <h2>✏️ Editing Existing Schedules</h2>
+        <p>You can edit schedules in two ways:</p>
+
+        <h3>Manual Lesson Editing</h3>
+        <ol>
+            <li>Go to <strong>Group Scheduler</strong> or <strong>Teacher Scheduler</strong></li>
+            <li>Click on any cell in the schedule grid</li>
+            <li>A dialog appears allowing you to:
+                <ul>
+                    <li>Select a different subject</li>
+                    <li>Select a different teacher</li>
+                    <li>Clear the lesson</li>
+                </ul>
+            </li>
+            <li>Click <strong>"Save"</strong></li>
+            <li>The system checks for conflicts automatically</li>
+        </ol>
+
+        <div class="info-box">
+            <strong>💡 Tip:</strong> Manual edits are preserved when you run "Autofill" again, as long as you don't click "Rebuild All".
+        </div>
+
+        <h3>Regenerating Schedules</h3>
+        <ul>
+            <li><strong>Autofill:</strong> Fills only empty slots, preserves existing lessons <span class="badge badge-success">Safe</span></li>
+            <li><strong>Rebuild All:</strong> Deletes everything and creates a fresh schedule <span class="badge badge-danger">Destructive</span></li>
+        </ul>
+
+        <h2>👁️ Preview Options</h2>
+        <p>Before exporting, you can preview schedules in multiple views:</p>
+
+        <table>
+            <tr>
+                <th>View Type</th>
+                <th>Description</th>
+                <th>Access From</th>
+            </tr>
+            <tr>
+                <td><strong>Group View</strong></td>
+                <td>See what a specific class/group has each day</td>
+                <td>Group Scheduler tab</td>
+            </tr>
+            <tr>
+                <td><strong>Teacher View</strong></td>
+                <td>See what a teacher teaches throughout the week</td>
+                <td>Teacher Scheduler tab</td>
+            </tr>
+            <tr>
+                <td><strong>Grid View</strong></td>
+                <td>Interactive grid showing all lessons</td>
+                <td>Both scheduler tabs</td>
+            </tr>
+            <tr>
+                <td><strong>List View</strong></td>
+                <td>Linear list of all scheduled lessons</td>
+                <td>Export preview</td>
+            </tr>
+        </table>
+
+        <h2>📚 Load from Examples</h2>
+        <div class="highlight-box">
+            <strong>🎓 Perfect for New Users!</strong><br><br>
+            The system includes pre-made example schedules that help you understand the data format and structure:
+            
+            <h3>Available Examples:</h3>
+            <ul>
+                <li><strong>English Example.xlsx:</strong> Complete example in English with sample teachers, groups, and subjects</li>
+                <li><strong>Hebrew-עברית.xlsx:</strong> Hebrew language example (RTL support)</li>
+                <li><strong>Russian-Русский.xlsx:</strong> Russian language example</li>
+            </ul>
+
+            <h3>How to Use Examples:</h3>
+            <ol>
+                <li>Go to <strong>Import/Export</strong> tab</li>
+                <li>Look for the <strong>"Load Example"</strong> button or dropdown</li>
+                <li>Select an example (English, Hebrew, or Russian)</li>
+                <li>Click <strong>"Load"</strong></li>
+                <li>The example data will be imported</li>
+                <li>Explore the data to understand the format</li>
+                <li>Modify it to match your school's needs!</li>
+            </ol>
+
+            <div class="success-box">
+                <strong>✅ Learning Tip:</strong> Start with an example, generate a schedule, then gradually replace the example data with your real school data. This is the easiest way to learn!
+            </div>
+        </div>
+
+        <h2>🔄 Editing Teachers, Groups, and Subjects</h2>
+        <p>All entities can be edited after creation:</p>
+
+        <h3>Editing Teachers</h3>
+        <ol>
+            <li>Go to <strong>Teachers</strong> tab</li>
+            <li>Find the teacher in the list</li>
+            <li>Click the <strong>"Edit"</strong> button (pencil icon)</li>
+            <li>Modify any field (name, subjects, availability)</li>
+            <li>Click <strong>"Save"</strong></li>
+        </ol>
+
+        <h3>Editing Groups</h3>
+        <ol>
+            <li>Go to <strong>Groups</strong> tab</li>
+            <li>Click <strong>"Edit"</strong> next to the group name</li>
+            <li>Change the name</li>
+            <li>Click <strong>"Save"</strong></li>
+        </ol>
+
+        <div class="warning-box">
+            <strong>⚠️ Warning:</strong> If you rename a group, all subjects and schedules associated with the old name will need to be updated manually.
+        </div>
+
+        <h3>Editing Subjects</h3>
+        <ol>
+            <li>Go to <strong>Subjects</strong> tab</li>
+            <li>Click <strong>"Edit"</strong> next to the subject</li>
+            <li>Modify name, group, or hours per week</li>
+            <li>Click <strong>"Save"</strong></li>
+        </ol>
+
+        <h2>🗑️ Deleting Data</h2>
+        <ul>
+            <li>Each tab has a <strong>"Delete"</strong> button (trash icon) next to each item</li>
+            <li>You'll be asked to confirm the deletion</li>
+            <li><span class="badge badge-danger">Warning</span> Deletion is permanent and cannot be undone!</li>
+            <li>Deleting a teacher or subject will affect existing schedules</li>
+        </ul>
+
+        <div class="error-box">
+            <strong>🛑 Be Careful!</strong> Always double-check before deleting. There is no "undo" function. Consider exporting a backup before making major deletions.
+        </div>
+    </div>
+
+    <!-- Section 6: Constraints & Rules -->
+    <div class="section" id="constraints">
+        <h1>6. Constraints & Rules</h1>
+
+        <h2>🔒 Hard Constraints (Must Be Satisfied)</h2>
+        <p>These constraints are absolutely required and cannot be violated:</p>
+
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3>1. No Teacher Double-Booking</h3>
+                <p>A teacher cannot teach two different classes at the same time.</p>
+                <p><span class="badge badge-danger">Critical</span></p>
+            </div>
+            <div class="feature-card">
+                <h3>2. Teacher Availability</h3>
+                <p>Teachers can only be assigned during their available time slots.</p>
+                <p><span class="badge badge-danger">Critical</span></p>
+            </div>
+            <div class="feature-card">
+                <h3>3. Subject-Teacher Match</h3>
+                <p>Only teachers qualified for a subject can teach it.</p>
+                <p><span class="badge badge-danger">Critical</span></p>
+            </div>
+            <div class="feature-card">
+                <h3>4. Required Hours</h3>
+                <p>Each subject must have the specified hours per week.</p>
+                <p><span class="badge badge-danger">Critical</span></p>
+            </div>
+        </div>
+
+        <div class="error-box">
+            <strong>❌ What Happens If Hard Constraints Can't Be Met?</strong><br>
+            The autofill algorithm will fail and report which constraints couldn't be satisfied. You'll need to adjust your data (add more teacher availability, reduce hours, etc.) and try again.
+        </div>
+
+        <h2>⚖️ Soft Constraints (Preferences)</h2>
+        <p>These are preferences that the system tries to honor but may violate if necessary:</p>
+
+        <table>
+            <tr>
+                <th>Constraint</th>
+                <th>Description</th>
+                <th>Priority</th>
+            </tr>
+            <tr>
+                <td><strong>Even Distribution</strong></td>
+                <td>Spread lessons evenly across the week instead of clustering them</td>
+                <td><span class="badge badge-info">Medium</span></td>
+            </tr>
+            <tr>
+                <td><strong>Teacher Preferences</strong></td>
+                <td>Some teachers may prefer morning or afternoon slots</td>
+                <td><span class="badge badge-warning">Low</span></td>
+            </tr>
+            <tr>
+                <td><strong>Subject Ordering</strong></td>
+                <td>Certain subjects might be better in specific time slots (e.g., Math in morning)</td>
+                <td><span class="badge badge-warning">Low</span></td>
+            </tr>
+        </table>
+
+        <div class="info-box">
+            <strong>💡 Note:</strong> The current algorithm prioritizes hard constraints. Soft constraints are partially implemented and will be enhanced in future versions.
+        </div>
+
+        <h2>👨‍🏫 Teacher Workload Limits</h2>
+        <p>The system controls teacher workload through:</p>
+
+        <h3>Weekly Hours Configuration</h3>
+        <ul>
+            <li>Teachers define their available time ranges</li>
+            <li>The system won't schedule them outside these times</li>
+            <li>Format: <code>Day:HH:MM-HH:MM; Day:HH:MM-HH:MM</code></li>
+        </ul>
+
+        <h3>Subject Hours Assignment</h3>
+        <ul>
+            <li>In the Teacher profile, each subject has a "hours" field</li>
+            <li>This indicates how many lessons per week the teacher will teach for that subject</li>
+            <li>The system respects these limits during autofill</li>
+        </ul>
+
+        <div class="code-block">
+<strong>Example:</strong>
+Teacher: John Smith
+Subjects:
+  - Math: 5 hours/week (Grade 10-A)
+  - Physics: 3 hours/week (Grade 10-A)
+  
+Total workload: 8 hours/week
+        </div>
+
+        <h2>📚 Subject Distribution Constraints</h2>
+        <p>These constraints control how subjects are spread throughout the week:</p>
+
+        <h3>Max Consecutive Lessons</h3>
+        <div class="highlight-box">
+            <strong>Purpose:</strong> Prevents student fatigue by limiting consecutive lessons of the same subject.<br><br>
+            
+            <strong>Configuration:</strong> Set in the <em>General Configuration</em> tab<br>
+            <strong>Default Value:</strong> 2<br><br>
+            
+            <strong>Example:</strong><br>
+            If set to 2, the schedule will avoid having 3 Math lessons in a row (like lessons 1, 2, and 3 on Monday).
+            
+            <div class="success-box">
+                ✅ Allowed: Math → Math → Break → Math<br>
+                ❌ Avoided: Math → Math → Math
+            </div>
+        </div>
+
+        <h3>Max Per Day</h3>
+        <div class="highlight-box">
+            <strong>Purpose:</strong> Limits how many lessons of the same subject can occur in one day.<br><br>
+            
+            <strong>Configuration:</strong> Set in the <em>General Configuration</em> tab<br>
+            <strong>Default Value:</strong> 3<br><br>
+            
+            <strong>Example:</strong><br>
+            If set to 3, a student won't have more than 3 Math lessons on the same day, even if they're not consecutive.
+        </div>
+
+        <h2>🎯 Custom Rules</h2>
+        <p>While the system doesn't yet support fully custom rules via UI, you can achieve custom scheduling by:</p>
+        <ol>
+            <li><strong>Strategic Availability:</strong> Limit teacher availability to force certain patterns</li>
+            <li><strong>Manual Edits:</strong> Use autofill to get a base schedule, then manually adjust specific lessons</li>
+            <li><strong>Multiple Iterations:</strong> Run autofill multiple times until you get a desired result</li>
+        </ol>
+
+        <div class="info-box">
+            <strong>🔮 Future Feature:</strong> Custom rule builder is planned for version 3.0, allowing you to define complex scheduling rules through a visual interface.
+        </div>
+
+        <h2>⚙️ Configuring Constraints</h2>
+        <p>To modify constraint settings:</p>
+        <ol>
+            <li>Go to <strong>General Configuration</strong> tab</li>
+            <li>Find the constraint section</li>
+            <li>Modify values:
+                <ul>
+                    <li><strong>Max Sequence Lessons:</strong> 1-5 (recommended: 2)</li>
+                    <li><strong>Max Per Day:</strong> 1-6 (recommended: 3)</li>
+                    <li><strong>Max Autofill Retries:</strong> 50-500 (higher = more attempts)</li>
+                </ul>
+            </li>
+            <li>Click <strong>"Save Configuration"</strong></li>
+            <li>Regenerate schedules to apply new constraints</li>
+        </ol>
+
+        <div class="warning-box">
+            <strong>⚠️ Balance Warning:</strong> Very strict constraints might make it impossible to generate a schedule. If autofill repeatedly fails, try relaxing some constraints.
+        </div>
+    </div>
+
+    <!-- Section 7: Optimization -->
+    <div class="section" id="optimization">
+        <h1>7. Optimization</h1>
+
+        <h2>🧠 How the Algorithm Works</h2>
+        <p>The School Auto-Scheduler uses an intelligent constraint-based algorithm with randomization and retry logic:</p>
+
+        <h3>Algorithm Overview</h3>
+        <div class="no-break">
+            <h4><span class="step-number">1</span> Data Collection</h4>
+            <p>System gathers all teachers, subjects, groups, and constraints</p>
+        </div>
+
+        <div class="no-break">
+            <h4><span class="step-number">2</span> Busy Map Creation</h4>
+            <p>Tracks which teachers are busy at which time slots</p>
+        </div>
+
+        <div class="no-break">
+            <h4><span class="step-number">3</span> Subject Iteration</h4>
+            <p>For each subject, finds qualified teachers</p>
+        </div>
+
+        <div class="no-break">
+            <h4><span class="step-number">4</span> Slot Assignment</h4>
+            <p>Tries to place lessons in available time slots while respecting all constraints</p>
+        </div>
+
+        <div class="no-break">
+            <h4><span class="step-number">5</span> Conflict Checking</h4>
+            <p>Verifies no teacher conflicts exist</p>
+        </div>
+
+        <div class="no-break">
+            <h4><span class="step-number">6</span> Constraint Validation</h4>
+            <p>Ensures max consecutive and max per day limits are respected</p>
+        </div>
+
+        <div class="no-break">
+            <h4><span class="step-number">7</span> Retry Logic</h4>
+            <p>If assignment fails, tries different combinations (up to max retries)</p>
+        </div>
+
+        <div class="info-box">
+            <strong>🔍 Technical Detail:</strong> The algorithm uses a greedy approach with backtracking. It assigns lessons one at a time, and if it gets stuck, it backtracks and tries a different path.
+        </div>
+
+        <h2>🎯 Optimization Goals</h2>
+        <p>The system optimizes for multiple objectives in this priority order:</p>
+
+        <table>
+            <tr>
+                <th>Priority</th>
+                <th>Goal</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td><span class="badge badge-danger">1</span></td>
+                <td><strong>No Conflicts</strong></td>
+                <td>Ensure no teacher double-booking</td>
+            </tr>
+            <tr>
+                <td><span class="badge badge-danger">2</span></td>
+                <td><strong>Complete Schedule</strong></td>
+                <td>All required hours must be filled</td>
+            </tr>
+            <tr>
+                <td><span class="badge badge-warning">3</span></td>
+                <td><strong>Respect Constraints</strong></td>
+                <td>Honor max consecutive and max per day limits</td>
+            </tr>
+            <tr>
+                <td><span class="badge badge-info">4</span></td>
+                <td><strong>Even Distribution</strong></td>
+                <td>Spread lessons throughout the week</td>
+            </tr>
+            <tr>
+                <td><span class="badge badge-info">5</span></td>
+                <td><strong>Teacher Preferences</strong></td>
+                <td>Consider teacher workload balance</td>
+            </tr>
+        </table>
+
+        <h2>📊 Quality Metrics</h2>
+        <p>You can assess schedule quality by examining:</p>
+
+        <h3>Completeness</h3>
+        <ul>
+            <li>✅ All subjects have the required weekly hours</li>
+            <li>✅ No empty slots that should be filled</li>
+            <li>✅ Every lesson has a teacher assigned</li>
+        </ul>
+
+        <h3>Balance</h3>
+        <ul>
+            <li>📊 Lessons are spread across multiple days (not all on Monday)</li>
+            <li>📊 Teachers have reasonable workload distribution</li>
+            <li>📊 No excessive consecutive lessons</li>
+        </ul>
+
+        <h3>Efficiency</h3>
+        <ul>
+            <li>⚡ Teachers don't have excessive gaps in their schedule</li>
+            <li>⚡ Students have consistent daily schedules</li>
+            <li>⚡ Break times are appropriate</li>
+        </ul>
+
+        <div class="success-box">
+            <strong>✅ Good Quality Indicators:</strong>
+            <ul>
+                <li>Autofill completes on first or second try</li>
+                <li>No warning messages about partial fulfillment</li>
+                <li>Teachers have evenly distributed workload</li>
+                <li>No excessive clusters of the same subject</li>
+            </ul>
+        </div>
+
+        <h2>⚖️ Balancing Competing Requirements</h2>
+        <p>Sometimes requirements conflict with each other. Here's how the system handles it:</p>
+
+        <h3>Scenario 1: Not Enough Teacher Availability</h3>
+        <div class="warning-box">
+            <strong>Problem:</strong> A subject needs 5 hours/week, but the teacher is only available for 3 hours.<br><br>
+            
+            <strong>Solution Options:</strong>
+            <ol>
+                <li>Increase teacher availability</li>
+                <li>Reduce subject hours requirement</li>
+                <li>Assign a second teacher to the subject</li>
+            </ol>
+        </div>
+
+        <h3>Scenario 2: Over-Constrained Configuration</h3>
+        <div class="warning-box">
+            <strong>Problem:</strong> Max consecutive = 1 and you need 5 Math lessons, but there are only 5 available slots, all consecutive.<br><br>
+            
+            <strong>Solution Options:</strong>
+            <ol>
+                <li>Increase max consecutive to 2</li>
+                <li>Add more teacher availability to spread lessons</li>
+                <li>Reduce Math hours requirement</li>
+            </ol>
+        </div>
+
+        <h3>Scenario 3: Multiple Teachers, One Subject</h3>
+        <div class="info-box">
+            <strong>Situation:</strong> Math has 5 hours/week, taught by both Teacher A (3 hours) and Teacher B (2 hours).<br><br>
+            
+            <strong>How System Handles It:</strong><br>
+            The algorithm tries to assign lessons proportionally based on each teacher's specified hours, respecting both teachers' availability.
+        </div>
+
+        <h2>✋ Manual Adjustments</h2>
+        <p>After autofill, you can manually fine-tune the schedule:</p>
+
+        <h3>When to Use Manual Adjustments:</h3>
+        <ul>
+            <li>✏️ Specific teacher preferences (e.g., Teacher X prefers mornings)</li>
+            <li>✏️ Special circumstances (e.g., lab classes need specific days)</li>
+            <li>✏️ Last-minute changes (teacher absence)</li>
+            <li>✏️ Minor improvements to an already good schedule</li>
+        </ul>
+
+        <h3>How to Make Manual Adjustments:</h3>
+        <ol>
+            <li>Go to <strong>Group Scheduler</strong> or <strong>Teacher Scheduler</strong></li>
+            <li>Click on the lesson cell you want to change</li>
+            <li>Select a different teacher or subject from the dropdown</li>
+            <li>System checks for conflicts automatically</li>
+            <li>If no conflicts, the change is saved</li>
+            <li>If conflicts exist, you'll get an error message</li>
+        </ol>
+
+        <div class="highlight-box">
+            <strong>💡 Pro Strategy:</strong> Use autofill to get 90% of the way there, then manually adjust the remaining 10% for perfection!
+        </div>
+
+        <h2>🔄 Re-Optimization</h2>
+        <p>If you're not satisfied with the generated schedule, you can:</p>
+
+        <h3>Option 1: Autofill Again (Partial)</h3>
+        <ul>
+            <li>Keeps all existing lessons</li>
+            <li>Only fills empty slots</li>
+            <li>Good for completing a partially manual schedule</li>
+        </ul>
+
+        <h3>Option 2: Rebuild All (Complete)</h3>
+        <ul>
+            <li>Deletes everything and starts fresh</li>
+            <li>May produce a different result due to randomization</li>
+            <li>Try multiple times to get the best result</li>
+        </ul>
+
+        <div class="info-box">
+            <strong>🎲 Random Factor:</strong> The algorithm has some randomization, so running "Rebuild All" multiple times may produce different valid schedules. Try a few times and pick the one you like best!
+        </div>
+
+        <h2>📈 Performance Considerations</h2>
+        <p>For large schools with many teachers and classes:</p>
+
+        <ul>
+            <li><strong>Increase Max Retries:</strong> In configuration, set "Max Autofill Retries" to 200-500</li>
+            <li><strong>Simplify Constraints:</strong> Very strict constraints slow down the algorithm</li>
+            <li><strong>Phased Approach:</strong> Create schedules one group at a time instead of all at once</li>
+            <li><strong>Adequate Availability:</strong> Ensure teachers have sufficient time slots to reduce conflict probability</li>
+        </ul>
+    </div>
+
+    <!-- Section 8: Viewing Results -->
+    <div class="section" id="viewing-results">
+        <h1>8. Viewing Results</h1>
+
+        <h2>📅 Schedule Display Formats</h2>
+        <p>The system offers multiple ways to view your generated schedules:</p>
+
+        <h3>Grid View (Interactive)</h3>
+        <div class="feature-card">
+            <p><strong>Location:</strong> Group Scheduler & Teacher Scheduler tabs</p>
+            <p><strong>Features:</strong></p>
+            <ul>
+                <li>Visual grid with days as columns and lesson numbers as rows</li>
+                <li>Color-coded by subject for easy identification</li>
+                <li>Click any cell to edit that lesson</li>
+                <li>Hover to see full details (subject, teacher, group)</li>
+                <li>Real-time updates when editing</li>
+            </ul>
+        </div>
+
+        <h3>Table View</h3>
+        <div class="feature-card">
+            <p><strong>Location:</strong> Print preview and exports</p>
+            <p><strong>Features:</strong></p>
+            <ul>
+                <li>Structured table format</li>
+                <li>Includes all lesson details in rows</li>
+                <li>Good for printing and documentation</li>
+                <li>Shows time ranges for each lesson</li>
+            </ul>
+        </div>
+
+        <h2>👨‍🏫 Teacher View</h2>
+        <p>See the schedule from a teacher's perspective:</p>
+
+        <h3>Accessing Teacher View:</h3>
+        <ol>
+            <li>Go to <strong>"Teacher Scheduler"</strong> tab</li>
+            <li>Select a teacher from the dropdown menu</li>
+            <li>The grid shows all lessons this teacher teaches</li>
+            <li>Each cell displays the group/class name and subject</li>
+        </ol>
+
+        <h3>What You'll See:</h3>
+        <ul>
+            <li><strong>Weekly Schedule:</strong> All teaching obligations across the week</li>
+            <li><strong>Free Periods:</strong> Empty cells show when teacher is available</li>
+            <li><strong>Workload Overview:</strong> Total hours taught per day and per week</li>
+            <li><strong>Subject Distribution:</strong> How teaching time is split between subjects</li>
+        </ul>
+
+        <div class="info-box">
+            <strong>💡 Use Case:</strong> Print individual teacher schedules and distribute them to your staff so everyone knows their weekly teaching assignments!
+        </div>
+
+        <h2>🎓 Class View</h2>
+        <p>See the schedule from a student group's perspective:</p>
+
+        <h3>Accessing Class View:</h3>
+        <ol>
+            <li>Go to <strong>"Group Scheduler"</strong> tab</li>
+            <li>Select a group/class from the dropdown menu</li>
+            <li>The grid shows all lessons for this class</li>
+            <li>Each cell displays the subject and teacher name</li>
+        </ol>
+
+        <h3>What You'll See:</h3>
+        <ul>
+            <li><strong>Complete Weekly Schedule:</strong> What students learn each day</li>
+            <li><strong>Subject Distribution:</strong> How subjects are spread across the week</li>
+            <li><strong>Teacher Rotation:</strong> Which teachers the class interacts with</li>
+            <li><strong>Free Periods/Breaks:</strong> Empty slots indicating breaks or study time</li>
+        </ul>
+
+        <h2>📤 Export Options</h2>
+        <p>Multiple export formats are available to share and archive schedules:</p>
+
+        <h3>1. PDF Export 📄</h3>
+        <div class="success-box">
+            <strong>How to Export PDF:</strong>
+            <ol>
+                <li>Go to Group Scheduler or Teacher Scheduler</li>
+                <li>Select the group/teacher you want to export</li>
+                <li>Click <strong>"Export to PDF"</strong> button</li>
+                <li>The PDF is generated with:
+                    <ul>
+                        <li>Color-coded subjects</li>
+                        <li>Professional formatting</li>
+                        <li>School name and logo (if configured)</li>
+                        <li>Date and version info</li>
+                    </ul>
+                </li>
+                <li>Download or print directly</li>
+            </ol>
+        </div>
+
+        <h3>2. Excel Export 📊</h3>
+        <div class="success-box">
+            <strong>How to Export Excel:</strong>
+            <ol>
+                <li>Go to <strong>"Import/Export"</strong> tab</li>
+                <li>Click <strong>"Export to Excel"</strong> button</li>
+                <li>A complete Excel file is generated with 8 sheets:
+                    <ul>
+                        <li>Configuration</li>
+                        <li>Teachers</li>
+                        <li>Groups</li>
+                        <li>Subjects</li>
+                        <li>Group Schedules</li>
+                        <li>Teacher Schedules</li>
+                        <li>Subject Colors</li>
+                        <li>User Settings</li>
+                    </ul>
+                </li>
+                <li>Use this for backups or external processing</li>
+            </ol>
+        </div>
+
+        <h3>3. Print 🖨️</h3>
+        <div class="success-box">
+            <strong>How to Print:</strong>
+            <ol>
+                <li>Navigate to the schedule you want to print</li>
+                <li>Use your browser's print function (Ctrl+P or Cmd+P)</li>
+                <li>The page is optimized for printing with:
+                    <ul>
+                        <li>Page breaks in appropriate places</li>
+                        <li>Print-friendly colors</li>
+                        <li>Proper margins and sizing</li>
+                    </ul>
+                </li>
+                <li>Select printer or "Save as PDF"</li>
+                <li>Print!</li>
+            </ol>
+        </div>
+
+        <h2>🔍 Conflict Reports</h2>
+        <p>The system automatically generates conflict reports during and after scheduling:</p>
+
+        <h3>During Autofill</h3>
+        <ul>
+            <li>If the algorithm encounters conflicts, it displays error messages</li>
+            <li>Messages include specific details: which teacher, which time slot, which groups</li>
+            <li>You can use this info to adjust data and try again</li>
+        </ul>
+
+        <h3>After Manual Edits</h3>
+        <ul>
+            <li>When you manually change a lesson, conflict checking runs immediately</li>
+            <li>If a conflict is detected (e.g., teacher already busy), you'll see an error</li>
+            <li>The edit is blocked until you resolve the conflict</li>
+        </ul>
+
+        <div class="code-block">
+<strong>Example Conflict Message:</strong>
+
+❌ Error: Cannot assign Teacher John Smith to Grade 10-A at Monday, Lesson 3.
+   Reason: Teacher is already teaching Grade 10-B at this time slot.
+        </div>
+
+        <h2>🎨 Visual Customization</h2>
+        <p>Schedules use color-coding for better readability:</p>
+
+        <ul>
+            <li><strong>Subject Colors:</strong> Each subject gets a unique color automatically</li>
+            <li><strong>Consistent Colors:</strong> The same subject has the same color across all views</li>
+            <li><strong>High Contrast:</strong> Colors are chosen to be visible and distinguishable</li>
+        </ul>
+
+        <div class="info-box">
+            <strong>💡 How Colors Are Assigned:</strong> The system uses a sophisticated algorithm to generate visually distinct colors. Colors are based on subject name hash, ensuring the same subject always has the same color.
+        </div>
+
+        <h2>📱 Responsive Design</h2>
+        <p>Schedules adapt to different screen sizes:</p>
+
+        <ul>
+            <li><strong>Desktop:</strong> Full grid view with all details visible</li>
+            <li><strong>Tablet:</strong> Optimized layout with scrollable grid</li>
+            <li><strong>Mobile:</strong> Stacked view for easy navigation on small screens</li>
+        </ul>
+
+        <div class="success-box">
+            <strong>✅ Multi-Device Support:</strong> You can view and manage schedules from your computer, tablet, or phone!
+        </div>
+    </div>
+
+    <!-- Section 9: Best Practices & Tips -->
+    <div class="section" id="best-practices">
+        <h1>9. Best Practices & Tips</h1>
+
+        <h2>📋 How to Prepare Data</h2>
+        <p>Good data preparation is key to successful scheduling:</p>
+
+        <h3>Step 1: Gather Information</h3>
+        <div class="no-break">
+            <p>Before starting, collect:</p>
+            <ul>
+                <li>✅ Complete list of all teachers with their subjects</li>
+                <li>✅ Teacher availability (when they can teach)</li>
+                <li>✅ List of all classes/groups</li>
+                <li>✅ Curriculum requirements (which subjects each group needs)</li>
+                <li>✅ Number of hours per week for each subject</li>
+                <li>✅ School day structure (number of lessons, break times)</li>
+            </ul>
+        </div>
+
+        <h3>Step 2: Organize in Spreadsheet</h3>
+        <div class="no-break">
+            <p>Create a working spreadsheet with tabs for:</p>
+            <ul>
+                <li>Teachers (name, subjects, availability)</li>
+                <li>Groups (class names)</li>
+                <li>Subjects (name, group, hours per week)</li>
+            </ul>
+        </div>
+
+        <h3>Step 3: Validate Data</h3>
+        <div class="no-break">
+            <p>Double-check that:</p>
+            <ul>
+                <li>✅ Every subject has at least one qualified teacher</li>
+                <li>✅ Total teacher workload doesn't exceed their availability</li>
+                <li>✅ Subject hours are realistic (not too many for a week)</li>
+                <li>✅ Teacher availability covers enough time slots</li>
+            </ul>
+        </div>
+
+        <div class="highlight-box">
+            <strong>💡 Golden Rule:</strong> "Hours Required ≤ Hours Available"<br><br>
+            Calculate: <em>Total subject hours for all groups</em> must be less than or equal to <em>total available teacher hours</em>. If not, schedules will be impossible to generate!
+        </div>
+
+        <h2>🎯 Common Scheduling Strategies</h2>
+
+        <h3>Strategy 1: Start Small</h3>
+        <div class="success-box">
+            <ol>
+                <li>Begin with one group and a few subjects</li>
+                <li>Generate and verify the schedule works</li>
+                <li>Gradually add more groups and subjects</li>
+                <li>This helps you learn the system without overwhelming complexity</li>
+            </ol>
+        </div>
+
+        <h3>Strategy 2: Use Examples First</h3>
+        <div class="success-box">
+            <ol>
+                <li>Load one of the provided example schedules</li>
+                <li>Generate a schedule from the example</li>
+                <li>Understand how data is structured</li>
+                <li>Modify the example data to match your school</li>
+                <li>Gradually replace with real data</li>
+            </ol>
+        </div>
+
+        <h3>Strategy 3: Flexible Availability</h3>
+        <div class="success-box">
+            <ol>
+                <li>Initially, make teacher availability broad (e.g., full days)</li>
+                <li>Generate a baseline schedule</li>
+                <li>Identify problems or preferences</li>
+                <li>Adjust teacher availability to guide the algorithm</li>
+                <li>Regenerate with refined constraints</li>
+            </ol>
+        </div>
+
+        <h3>Strategy 4: Prioritize Core Subjects</h3>
+        <div class="success-box">
+            <ol>
+                <li>Enter core subjects first (Math, Language, Science)</li>
+                <li>Generate schedules to place these subjects</li>
+                <li>Add elective/secondary subjects afterward</li>
+                <li>Fill remaining slots with the additional subjects</li>
+            </ol>
+        </div>
+
+        <h2>❌ Avoiding Common Mistakes</h2>
+
+        <h3>Mistake 1: Insufficient Teacher Availability</h3>
+        <div class="error-box">
+            <strong>Problem:</strong> Teacher only available 10 hours/week but assigned 15 hours of teaching.<br>
+            <strong>Solution:</strong> Increase availability or reduce assigned hours or add another teacher.
+        </div>
+
+        <h3>Mistake 2: Forgetting to Assign Teachers to Subjects</h3>
+        <div class="error-box">
+            <strong>Problem:</strong> Subject exists but no teacher has it in their subjects list.<br>
+            <strong>Solution:</strong> Go to Teachers tab, edit the relevant teacher, add the subject to their list.
+        </div>
+
+        <h3>Mistake 3: Over-Constraining</h3>
+        <div class="error-box">
+            <strong>Problem:</strong> Max consecutive = 1, max per day = 1, but need 5 lessons/week for a subject.<br>
+            <strong>Solution:</strong> Relax constraints. Allow max consecutive = 2 or max per day = 2.
+        </div>
+
+        <h3>Mistake 4: Not Using Weekly Hours Format</h3>
+        <div class="error-box">
+            <strong>Problem:</strong> Using only "Availability" field with lesson numbers, which is less flexible.<br>
+            <strong>Solution:</strong> Use "Teachers Weekly Hours" with time ranges like <code>Monday:08:00-15:00</code>. The system auto-converts to lesson numbers.
+        </div>
+
+        <h3>Mistake 5: Deleting Without Backup</h3>
+        <div class="error-box">
+            <strong>Problem:</strong> Accidentally deleted important data and can't undo.<br>
+            <strong>Solution:</strong> Always export to Excel before making major changes. Keep backups!
+        </div>
+
+        <h2>💡 Tips for Complex Schedules</h2>
+
+        <h3>Tip 1: Use Multiple Teachers Per Subject</h3>
+        <p>If a subject requires many hours, assign it to 2-3 teachers. This provides flexibility and reduces the chance of conflicts.</p>
+
+        <h3>Tip 2: Block Out Break Times</h3>
+        <p>If you have a fixed lunch break (e.g., lesson 4), make sure NO teachers have availability during that time. This ensures the break is preserved across all groups.</p>
+
+        <h3>Tip 3: Stagger Teacher Start Times</h3>
+        <p>Not all teachers need to work the same hours. Some can start early, others late. This increases available time slot combinations.</p>
+
+        <h3>Tip 4: Use Partial Availability for Part-Time Teachers</h3>
+        <p>Part-time teachers might only work specific days. Set their availability to only those days (e.g., <code>Monday:08:00-15:00; Wednesday:08:00-15:00</code>).</p>
+
+        <h3>Tip 5: Iterate and Refine</h3>
+        <p>Don't expect perfection on the first try. Generate a schedule, identify issues, adjust data, regenerate. Repeat until satisfied.</p>
+
+        <div class="highlight-box">
+            <strong>🏆 Expert Tip:</strong> Keep a "lessons learned" document. After each scheduling session, note what worked and what didn't. This will make next semester's scheduling much easier!
+        </div>
+
+        <h2>💬 Communication with Staff</h2>
+        <p>Involve your staff in the scheduling process:</p>
+
+        <h3>Before Scheduling</h3>
+        <ul>
+            <li>📧 Send a form to teachers to collect their availability</li>
+            <li>📧 Ask about preferences (morning/afternoon, specific days)</li>
+            <li>📧 Confirm subject assignments and hours</li>
+        </ul>
+
+        <h3>During Scheduling</h3>
+        <ul>
+            <li>🔄 Share draft schedules with department heads for feedback</li>
+            <li>🔄 Address concerns and special requests</li>
+            <li>🔄 Make adjustments based on feedback</li>
+        </ul>
+
+        <h3>After Scheduling</h3>
+        <ul>
+            <li>✅ Distribute finalized schedules to all teachers (PDF export)</li>
+            <li>✅ Post class schedules in visible locations</li>
+            <li>✅ Provide a contact person for questions</li>
+        </ul>
+
+        <h2>📅 Semester Planning</h2>
+        <p>Best practices for semester/year planning:</p>
+
+        <ol>
+            <li><strong>Start Early:</strong> Begin scheduling 2-3 weeks before the semester</li>
+            <li><strong>Freeze Curriculum First:</strong> Don't start until subject requirements are finalized</li>
+            <li><strong>Test Run:</strong> Do a practice schedule generation to identify issues</li>
+            <li><strong>Buffer Time:</strong> Allow time for adjustments and feedback</li>
+            <li><strong>Archive Previous:</strong> Keep old schedules for reference and continuity</li>
+        </ol>
+
+        <div class="success-box">
+            <strong>✅ Recommended Timeline:</strong>
+            <ul>
+                <li><strong>Week 1:</strong> Gather data, prepare spreadsheets</li>
+                <li><strong>Week 2:</strong> Enter data into system, test generate</li>
+                <li><strong>Week 3:</strong> Refine, get feedback, finalize</li>
+                <li><strong>Week 4:</strong> Distribute, print, prepare for semester start</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Section 10: Troubleshooting -->
+    <div class="section" id="troubleshooting">
+        <h1>10. Troubleshooting</h1>
+
+        <h2>🔧 Common Issues and Solutions</h2>
+
+        <h3>Issue 1: Autofill Fails - "No teacher found for subject"</h3>
+        <div class="error-box">
+            <strong>Symptom:</strong> Autofill button returns error message mentioning specific subjects.<br><br>
+            
+            <strong>Cause:</strong> A subject exists in the Subjects list, but no teacher has that subject assigned to them.<br><br>
+            
+            <strong>Solution:</strong>
+            <ol>
+                <li>Go to <strong>Teachers</strong> tab</li>
+                <li>Find a teacher who should teach that subject</li>
+                <li>Click <strong>Edit</strong></li>
+                <li>Add the subject to their subjects list with appropriate hours and group</li>
+                <li>Save and try autofill again</li>
+            </ol>
+        </div>
+
+        <h3>Issue 2: Autofill Fails - "Insufficient availability"</h3>
+        <div class="error-box">
+            <strong>Symptom:</strong> Error says teacher doesn't have enough time slots.<br><br>
+            
+            <strong>Cause:</strong> Total subject hours exceed the teacher's available time slots.<br><br>
+            
+            <strong>Solution:</strong>
+            <ol>
+                <li>Check the teacher's availability (Weekly Hours or Availability field)</li>
+                <li>Calculate: How many lessons do they have available?</li>
+                <li>Calculate: How many lessons are they assigned to teach?</li>
+                <li>If assigned > available:
+                    <ul>
+                        <li>Option A: Increase teacher availability</li>
+                        <li>Option B: Reduce subject hours</li>
+                        <li>Option C: Assign additional teacher to share the load</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+
+        <h3>Issue 3: Autofill Partially Complete</h3>
+        <div class="warning-box">
+            <strong>Symptom:</strong> Some lessons are filled, but not all. Some subjects incomplete.<br><br>
+            
+            <strong>Cause:</strong> Algorithm couldn't fit remaining lessons due to conflicts or constraints.<br><br>
+            
+            <strong>Solution:</strong>
+            <ol>
+                <li>Increase <strong>Max Autofill Retries</strong> in configuration (try 200-500)</li>
+                <li>Relax constraints (increase max consecutive or max per day)</li>
+                <li>Check teacher availability - might be too restrictive</li>
+                <li>Manually fill remaining slots by clicking on empty cells</li>
+                <li>Or click <strong>Rebuild All</strong> to start fresh (different random seed might work)</li>
+            </ol>
+        </div>
+
+        <h3>Issue 4: Cannot Edit Lesson - Conflict Error</h3>
+        <div class="error-box">
+            <strong>Symptom:</strong> When trying to manually change a lesson, system says teacher is busy.<br><br>
+            
+            <strong>Cause:</strong> The teacher you're trying to assign is already teaching another class at that time.<br><br>
+            
+            <strong>Solution:</strong>
+            <ol>
+                <li>Choose a different teacher for this lesson</li>
+                <li>OR go to the other group's schedule and move that lesson to a different time</li>
+                <li>OR swap lessons with another teacher</li>
+            </ol>
+        </div>
+
+        <h2>📅 Schedule Conflicts</h2>
+
+        <h3>How to Identify Conflicts</h3>
+        <ol>
+            <li>Go to <strong>Teacher Scheduler</strong> tab</li>
+            <li>Select a teacher</li>
+            <li>Look for time slots where they're teaching multiple groups</li>
+            <li>This shouldn't happen (the system prevents it), but if you see it, it's a bug</li>
+        </ol>
+
+        <h3>Resolving Conflicts Manually</h3>
+        <ol>
+            <li>Identify the conflicting lessons (same teacher, same time, different groups)</li>
+            <li>Decide which lesson to keep</li>
+            <li>Move the other lesson to a different time slot</li>
+            <li>Ensure the new time slot doesn't create new conflicts</li>
+        </ol>
+
+        <h2>📂 Data Import Errors</h2>
+
+        <h3>Issue: Excel Import Fails</h3>
+        <div class="error-box">
+            <strong>Possible Causes:</strong>
+            <ul>
+                <li>File format incorrect (not .xlsx)</li>
+                <li>Required sheets missing</li>
+                <li>Column headers don't match expected format</li>
+                <li>Data format errors (e.g., text in numeric field)</li>
+            </ul>
+            
+            <strong>Solution:</strong>
+            <ol>
+                <li>Download the official template or example file</li>
+                <li>Compare your file to the template</li>
+                <li>Ensure all required sheets exist: Config, Teachers, Groups, Subjects, etc.</li>
+                <li>Check that column headers exactly match the template</li>
+                <li>Validate data types (numbers are numbers, dates are dates, etc.)</li>
+            </ol>
+        </div>
+
+        <h3>Issue: Import Succeeds but Data Looks Wrong</h3>
+        <div class="warning-box">
+            <strong>Cause:</strong> Data was imported but doesn't match expectations.<br><br>
+            
+            <strong>Solution:</strong>
+            <ol>
+                <li>Check each tab (Teachers, Groups, Subjects) to verify imported data</li>
+                <li>If incorrect, you can:
+                    <ul>
+                        <li>Manually edit the incorrect entries</li>
+                        <li>Fix the Excel file and re-import</li>
+                    </ul>
+                </li>
+                <li>Before re-importing, export current data as backup</li>
+            </ol>
+        </div>
+
+        <h2>⚡ Performance Issues</h2>
+
+        <h3>Issue: Autofill Takes Too Long</h3>
+        <div class="warning-box">
+            <strong>Symptom:</strong> Clicking autofill results in long wait (1-2 minutes or more).<br><br>
+            
+            <strong>Cause:</strong> Complex configuration with many retries or very constrained problem.<br><br>
+            
+            <strong>Solution:</strong>
+            <ol>
+                <li>Reduce <strong>Max Autofill Retries</strong> to 50-100 (faster but less likely to complete)</li>
+                <li>Relax constraints (increase max consecutive, max per day)</li>
+                <li>Increase teacher availability to give algorithm more options</li>
+                <li>Simplify by scheduling fewer groups at once</li>
+            </ol>
+        </div>
+
+        <h3>Issue: Browser Freezes or Becomes Unresponsive</h3>
+        <div class="error-box">
+            <strong>Symptom:</strong> Browser tab becomes unresponsive during operations.<br><br>
+            
+            <strong>Cause:</strong> Very large dataset or browser resource limitations.<br><br>
+            
+            <strong>Solution:</strong>
+            <ol>
+                <li>Close other browser tabs to free memory</li>
+                <li>Use a modern browser (Chrome, Firefox, Edge recommended)</li>
+                <li>Wait patiently - the operation might complete</li>
+                <li>If truly frozen, refresh the page and try again with reduced complexity</li>
+            </ol>
+        </div>
+
+        <h2>🆘 Support Contact</h2>
+        <p>If you encounter issues not covered here:</p>
+
+        <div class="info-box">
+            <strong>📞 Contact Support:</strong><br><br>
+            
+            <strong>Website:</strong> www.yamsoft.org<br>
+            <strong>Email:</strong> support@yamsoft.org<br><br>
+            
+            <strong>When Contacting Support, Please Provide:</strong>
+            <ul>
+                <li>Description of the problem</li>
+                <li>What you were trying to do</li>
+                <li>Error messages (if any)</li>
+                <li>Screenshots (if applicable)</li>
+                <li>Your browser type and version</li>
+                <li>Number of teachers/groups/subjects in your data</li>
+            </ul>
+        </div>
+
+        <h2>🐛 Known Issues</h2>
+        <p>Current version known limitations:</p>
+
+        <table>
+            <tr>
+                <th>Issue</th>
+                <th>Workaround</th>
+                <th>Fix Status</th>
+            </tr>
+            <tr>
+                <td>No dedicated room management</td>
+                <td>Manage rooms externally or in group names</td>
+                <td><span class="badge badge-warning">Planned v2.1</span></td>
+            </tr>
+            <tr>
+                <td>No custom rule builder UI</td>
+                <td>Use availability strategically to enforce patterns</td>
+                <td><span class="badge badge-warning">Planned v3.0</span></td>
+            </tr>
+            <tr>
+                <td>Limited soft constraint optimization</td>
+                <td>Manual adjustments after autofill</td>
+                <td><span class="badge badge-info">Enhancement planned</span></td>
+            </tr>
+        </table>
+
+        <h2>🔄 Resetting to Default</h2>
+        <p>If everything is broken and you want to start fresh:</p>
+
+        <div class="warning-box">
+            <strong>⚠️ Nuclear Option: Complete Reset</strong><br><br>
+            
+            This deletes ALL data and starts from scratch. <strong>Only use as a last resort!</strong><br><br>
+            
+            <strong>Steps:</strong>
+            <ol>
+                <li>Export all data to Excel (if you want to keep a backup)</li>
+                <li>Go to each tab (Teachers, Groups, Subjects) and delete all entries</li>
+                <li>Go to Group Scheduler and delete all schedules</li>
+                <li>In Configuration, reset all settings to defaults</li>
+                <li>Start over with fresh data</li>
+            </ol>
+            
+            <strong>Alternative:</strong> Create a new user account for a completely clean slate.
+        </div>
+    </div>
+
+    <!-- Section 11: Quick Reference -->
+    <div class="section" id="quick-reference">
+        <h1>11. Quick Reference</h1>
+
+        <h2>✅ Checklist for Creating Schedules</h2>
+        <div class="success-box">
+            <h3>Before You Start:</h3>
+            <ul>
+                <li>☐ Gather all teacher information</li>
+                <li>☐ List all classes/groups</li>
+                <li>☐ Define curriculum (subjects and hours)</li>
+                <li>☐ Determine school day structure</li>
+                <li>☐ Identify constraints and preferences</li>
+            </ul>
+
+            <h3>Setup Phase:</h3>
+            <ul>
+                <li>☐ Create/login to account</li>
+                <li>☐ Configure language and basic settings</li>
+                <li>☐ Set number of lessons per day</li>
+                <li>☐ Configure max consecutive and max per day</li>
+            </ul>
+
+            <h3>Data Entry Phase:</h3>
+            <ul>
+                <li>☐ Add all teachers with subjects and availability</li>
+                <li>☐ Add all groups/classes</li>
+                <li>☐ Add all subjects with hours per week</li>
+                <li>☐ Verify every subject has a teacher assigned</li>
+            </ul>
+
+            <h3>Generation Phase:</h3>
+            <ul>
+                <li>☐ Select a group from Group Scheduler</li>
+                <li>☐ Click Autofill</li>
+                <li>☐ Confirm and wait for generation</li>
+                <li>☐ Review generated schedule</li>
+                <li>☐ Make manual adjustments if needed</li>
+                <li>☐ Repeat for all groups</li>
+            </ul>
+
+            <h3>Finalization Phase:</h3>
+            <ul>
+                <li>☐ Review all group schedules</li>
+                <li>☐ Review all teacher schedules</li>
+                <li>☐ Check for conflicts or issues</li>
+                <li>☐ Get feedback from staff</li>
+                <li>☐ Make final adjustments</li>
+                <li>☐ Export to PDF and Excel</li>
+                <li>☐ Distribute to teachers and students</li>
+            </ul>
+        </div>
+
+        <h2>📖 Important Terms Glossary</h2>
+        <table>
+            <tr>
+                <th>Term</th>
+                <th>Definition</th>
+            </tr>
+            <tr>
+                <td><strong>Autofill</strong></td>
+                <td>Automatic schedule generation algorithm that assigns lessons to time slots</td>
+            </tr>
+            <tr>
+                <td><strong>Group</strong></td>
+                <td>A class or student group that needs a schedule (e.g., "Grade 10-A")</td>
+            </tr>
+            <tr>
+                <td><strong>Subject</strong></td>
+                <td>A course or topic taught (e.g., Math, English, Physics)</td>
+            </tr>
+            <tr>
+                <td><strong>Teacher Availability</strong></td>
+                <td>Time slots when a teacher is available to teach</td>
+            </tr>
+            <tr>
+                <td><strong>Weekly Hours</strong></td>
+                <td>Time ranges specified as Day:HH:MM-HH:MM format</td>
+            </tr>
+            <tr>
+                <td><strong>Lesson</strong></td>
+                <td>A single teaching period (e.g., 45 minutes)</td>
+            </tr>
+            <tr>
+                <td><strong>Time Slot</strong></td>
+                <td>A specific day and lesson number (e.g., Monday, Lesson 3)</td>
+            </tr>
+            <tr>
+                <td><strong>Conflict</strong></td>
+                <td>When a teacher is assigned to two places at the same time</td>
+            </tr>
+            <tr>
+                <td><strong>Constraint</strong></td>
+                <td>A rule that the schedule must or should follow</td>
+            </tr>
+            <tr>
+                <td><strong>Hard Constraint</strong></td>
+                <td>A rule that must be satisfied (e.g., no teacher double-booking)</td>
+            </tr>
+            <tr>
+                <td><strong>Soft Constraint</strong></td>
+                <td>A preference that should be followed if possible (e.g., even distribution)</td>
+            </tr>
+            <tr>
+                <td><strong>Max Consecutive</strong></td>
+                <td>Maximum number of consecutive lessons of the same subject</td>
+            </tr>
+            <tr>
+                <td><strong>Max Per Day</strong></td>
+                <td>Maximum number of lessons of the same subject in one day</td>
+            </tr>
+            <tr>
+                <td><strong>Rebuild All</strong></td>
+                <td>Delete entire schedule and generate from scratch</td>
+            </tr>
+            <tr>
+                <td><strong>Busy Map</strong></td>
+                <td>Internal tracking of which teachers are busy at which time slots</td>
+            </tr>
+        </table>
+
+        <h2>⌨️ Keyboard Shortcuts</h2>
+        <table>
+            <tr>
+                <th>Action</th>
+                <th>Shortcut</th>
+            </tr>
+            <tr>
+                <td>Print current view</td>
+                <td><kbd>Ctrl+P</kbd> (Windows) / <kbd>Cmd+P</kbd> (Mac)</td>
+            </tr>
+            <tr>
+                <td>Refresh page</td>
+                <td><kbd>F5</kbd> or <kbd>Ctrl+R</kbd></td>
+            </tr>
+            <tr>
+                <td>Close modal/dialog</td>
+                <td><kbd>Esc</kbd></td>
+            </tr>
+            <tr>
+                <td>Submit form</td>
+                <td><kbd>Enter</kbd> (when in form field)</td>
+            </tr>
+            <tr>
+                <td>Navigate tabs</td>
+                <td><kbd>Tab</kbd> to move forward, <kbd>Shift+Tab</kbd> to move backward</td>
+            </tr>
+        </table>
+
+        <h2>💡 Quick Tips Summary</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3>⚡ Faster Setup</h3>
+                <p>Use "Load from Examples" to start with pre-configured data, then modify to match your school.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🔍 Find Errors Fast</h3>
+                <p>If autofill fails, read the error message carefully - it tells you exactly what's wrong.</p>
+            </div>
+            <div class="feature-card">
+                <h3>💾 Always Backup</h3>
+                <p>Export to Excel before making major changes. There's no undo button!</p>
+            </div>
+            <div class="feature-card">
+                <h3>🎲 Try Multiple Times</h3>
+                <p>"Rebuild All" uses randomization. Run it 2-3 times and pick the best result.</p>
+            </div>
+            <div class="feature-card">
+                <h3>👥 Use Multiple Teachers</h3>
+                <p>Assign popular subjects to 2+ teachers for more scheduling flexibility.</p>
+            </div>
+            <div class="feature-card">
+                <h3>📊 Start Simple</h3>
+                <p>Begin with one or two groups, verify it works, then add more complexity.</p>
+            </div>
+            <div class="feature-card">
+                <h3>⏰ Weekly Hours > Availability</h3>
+                <p>Use "Weekly Hours" format with time ranges - it's more flexible and powerful.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🔄 Iterate and Refine</h3>
+                <p>First schedule won't be perfect. Generate, review, adjust, repeat.</p>
+            </div>
+        </div>
+
+        <h2>📞 Quick Contact Info</h2>
+        <div class="info-box">
+            <strong>School Auto-Scheduler</strong><br>
+            Version 2.0 - February 2026<br><br>
+            
+            <strong>🌐 Online Access:</strong> https://sc.yamsoft.org<br>
+            <strong>💾 Offline Version Info:</strong> www.yamsoft.org<br>
+            <strong>📧 Support:</strong> support@yamsoft.org<br><br>
+            
+            <strong>Created by Yoav Moiseev</strong><br>
+            YamSoft - Educational Software Solutions<br>
+            www.yamsoft.org
+        </div>
+
+        <h2>🔗 Additional Resources</h2>
+        <ul>
+            <li><strong>Video Tutorials:</strong> Visit www.yamsoft.org/tutorials</li>
+            <li><strong>FAQ:</strong> https://sc.yamsoft.org/faq</li>
+            <li><strong>Community Forum:</strong> forum.yamsoft.org</li>
+            <li><strong>Update Notes:</strong> Check the website for latest version information</li>
+        </ul>
+    </div>
+
+    <!-- Thank You Page -->
+    <div class="thank-you">
+        <h1 style="font-size: 36pt; margin-bottom: 20px;">Thank You!</h1>
+        <p style="font-size: 14pt; max-width: 600px; margin: 0 auto 30px;">
+            We hope this manual helps you create efficient and conflict-free schedules for your school.
+        </p>
+        <p style="font-size: 12pt; opacity: 0.9;">
+            For questions, support, or feedback, please visit:
+        </p>
+        <p style="font-size: 16pt; font-weight: bold; margin: 20px 0;">
+            www.yamsoft.org
+        </p>
+        <p style="font-size: 11pt; margin-top: 40px; opacity: 0.85;">
+            <strong>Yoav Moiseev</strong><br>
+            Creator & Developer<br>
+            YamSoft Educational Solutions
+        </p>
+        <p style="font-size: 10pt; margin-top: 30px; opacity: 0.7;">
+            © 2026 YamSoft. All rights reserved.
+        </p>
+    </div>
+
+</body>
+</html>

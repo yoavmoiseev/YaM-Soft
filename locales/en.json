@@ -1,7 +1,7 @@
 {
   "site":{"title":"YaM SOFT","tag":"Software & Solutions"},
   "hero":{"title":"YoavMoiseev SOFT - software for your business","desc":"Modern Solution, reliable, beautiful."},
-  "projects":{"title":"Projects","learnMore":"Learn More","videoInstructions":"📹 Video Instructions","visitSite":"🌐 Visit Website","desktopDownload":"💾 Download Desktop Version","items":{
+  "projects":{"title":"Projects","learnMore":"Learn More","videoInstructions":"📹 Video Instructions","videoComingSoon":"Video instructions coming soon. Please use the User Manual.","userManual":"📖 User Manual","visitSite":"🌐 Visit Website","desktopDownload":"💾 Download Desktop Version","items":{
     "schoolAutoScheduler":{"title":"SchoolAutoScheduler","desc":"Automatic timetable builder for schools and colleges. Builds conflict-free schedules for classes and teachers."},
     "schoolAutoExam":{"title":"SchoolAutoExam","desc":"Automatic exam generation, checking, and grading system. Provides fast and fair assessment for students."},
     "schoolChat":{"title":"SchoolChat","desc":"Simple classroom chat for student communication. Allows students to ask questions and communicate during lessons."}

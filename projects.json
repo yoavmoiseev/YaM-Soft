@@ -4,6 +4,11 @@
     "key": "schoolAutoScheduler",
     "demoVideo": "video/schoolautoscheduler-demo.mp4",
     "videoInstructions": "https://yamsoft.pythonanywhere.com",
+    "userManual": {
+      "en": "docs/schoolscheduler/user_manual.html",
+      "ru": "docs/schoolscheduler/user_manual_russian.html",
+      "he": "docs/schoolscheduler/user_manual_hebrew.html"
+    },
     "siteUrl": "https://sc.yamsoft.org",
     "desktopDownload": "assets/schoolautoscheduler.zip"
   },
@@ -12,7 +17,12 @@
     "key": "schoolAutoExam",
     "demoVideo": "video/schoolautoexam-demo.mp4",
     "videoInstructions": "https://yamsoft.pythonanywhere.com",
-    "siteUrl": "https://sc.yamsoft.org",
+    "userManual": {
+      "en": "docs/autoexam/user_manual.html",
+      "ru": "docs/autoexam/user_manual_russian.html",
+      "he": "docs/autoexam/user_manual_hebrew.html"
+    },
+    "siteUrl": "https://ex.yamsoft.org",
     "desktopDownload": "assets/schoolautoexam.zip"
   },
   {

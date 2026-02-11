@@ -94,7 +94,7 @@
       const actions = document.createElement('div'); actions.className='actions';
       const learnMore = document.createElement('a'); 
       learnMore.className='btn'; 
-      learnMore.href=`projects-${lang}.html`; 
+      learnMore.href=`projects-${lang}.html#${p.id}`; 
       learnMore.textContent=locales[lang].projects.learnMore;
       actions.appendChild(learnMore);
       card.appendChild(actions);

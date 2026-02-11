@@ -69,10 +69,27 @@
         if(p.videoInstructions){
           const videoInstLink = document.createElement('a');
           videoInstLink.className = 'btn';
-          videoInstLink.href = p.videoInstructions;
-          videoInstLink.target = '_blank';
+          videoInstLink.href = '#';
           videoInstLink.textContent = locale.projects.videoInstructions;
+          videoInstLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            if(p.videoInstructions.includes('yamsoft.pythonanywhere.com')){
+              alert(locale.projects.videoComingSoon);
+            } else {
+              window.open(p.videoInstructions, '_blank');
+            }
+          });
           downloads.appendChild(videoInstLink);
+        }
+
+        // User Manual
+        if(p.userManual && p.userManual[lang]){
+          const manualLink = document.createElement('a');
+          manualLink.className = 'btn';
+          manualLink.href = p.userManual[lang];
+          manualLink.target = '_blank';
+          manualLink.textContent = locale.projects.userManual;
+          downloads.appendChild(manualLink);
         }
 
         // Visit Site
@@ -85,11 +102,17 @@
           downloads.appendChild(siteLink);
         }
 
-        // Desktop Download (optional) - Drive override for SchoolAutoScheduler, fallback to project desktopDownload
+        // Desktop Download (optional) - Drive override for SchoolAutoScheduler and SchoolAutoExam
         if(p.key === 'schoolAutoScheduler' || p.id === 'p1'){
           const dlLink = document.createElement('a');
           dlLink.className = 'btn';
           dlLink.href = 'https://drive.google.com/uc?export=download&id=1s3L6pfOy6rat2gvHNsttsskc6f7UdGY1';
+          dlLink.textContent = locale.projects.desktopDownload;
+          downloads.appendChild(dlLink);
+        } else if(p.key === 'schoolAutoExam' || p.id === 'p2'){
+          const dlLink = document.createElement('a');
+          dlLink.className = 'btn';
+          dlLink.href = 'https://drive.google.com/uc?export=download&id=1SkE4XTJ2p_L4uMdK-DMtpbrP3NuCQjuf';
           dlLink.textContent = locale.projects.desktopDownload;
           downloads.appendChild(dlLink);
         } else if(p.desktopDownload){
@@ -143,6 +166,16 @@
       if(window.ReviewsManager){
         window.ReviewsManager.init(lang, locale.reviews);
       }
+      
+      // Scroll to anchor if present in URL
+      setTimeout(() => {
+        if(window.location.hash) {
+          const target = document.querySelector(window.location.hash);
+          if(target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+      }, 100);
     }
     
     loadData();
