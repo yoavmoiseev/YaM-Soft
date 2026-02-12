@@ -1,5 +1,5 @@
 {
-  "site":{"title":"YaM SOFT","tag":"פתרונות תוכנה"},
+  "site":{"title":"ימ סוףט","tag":"פתרונות תוכנה"},
   "hero":{"title":"בס''ד<br>פתרונות תוכנה למהדרין.<br>עוד לא הסוף... עוברים את ים סוף","desc":" יואב מוייסיב (SOFT)"},
   "projects":{"title":"פרויקטים","learnMore":"לפרטים נוספים","videoInstructions":"סרטון הדרכה","videoComingSoon":"סרטון ההדרכה יהיה זמין בקרוב. אנא השתמש במדריך למשתמש.","userManual":"📖 מדריך למשתמש","visitSite":"🌐 בקר באתר","desktopDownload":"💾 הורד גרסת שולחן עבודה","items":{
     "schoolAutoScheduler":{"title":"SchoolAutoScheduler","desc":"בונה מערכת שעות אוטומטית לבתי-ספר ומכללות."},

@@ -186,7 +186,110 @@
       vid.style.maxWidth = '';
       vid.style.flex = '0 0 auto';
       vid.style.alignSelf = 'center';
+
+      // enable interaction: double-click (desktop) and double-tap (mobile) to open modal
+      vid.style.pointerEvents = 'auto';
+      vid.style.cursor = 'pointer';
+
+      // remove previous handlers if any
+      vid.ondblclick = null;
+      vid.ontouchend = null;
+
+      vid.ondblclick = function(e){
+        openVideoModal(vid);
+      };
+
+      // simple double-tap detection for touch devices
+      let lastTap = 0;
+      vid.ontouchend = function(e){
+        const now = Date.now();
+        if(now - lastTap < 350){
+          openVideoModal(vid);
+          lastTap = 0;
+        } else {
+          lastTap = now;
+        }
+      };
   }
+
+    // Open modal overlay with an enlarged copy of the language video.
+    function openVideoModal(smallVid){
+      if(document.getElementById('videoModal')) return; // already open
+
+      const overlay = document.createElement('div');
+      overlay.id = 'videoModal';
+      overlay.className = 'video-modal';
+
+      const content = document.createElement('div');
+      content.className = 'video-modal-content';
+
+      const header = document.createElement('div');
+      header.className = 'video-modal-header';
+      const titleLink = document.createElement('a');
+      titleLink.className = 'video-modal-title';
+      titleLink.href = 'https://yamsoft.org';
+      titleLink.target = '_blank';
+      titleLink.rel = 'noopener noreferrer';
+      // Use localized site title when available
+      try{
+        const lang = (typeof langSelect !== 'undefined' && langSelect && langSelect.value) ? langSelect.value : 'en';
+        const localized = (locales && locales[lang] && locales[lang].site && locales[lang].site.title) ? locales[lang].site.title : null;
+        titleLink.textContent = (localized || 'YaM SOFT') + ' ©';
+      }catch(e){
+        titleLink.textContent = 'YaM SOFT ©';
+      }
+      titleLink.style.color = '#fff';
+      titleLink.style.textDecoration = 'none';
+
+      const closeBtn = document.createElement('button');
+      closeBtn.className = 'video-modal-close';
+      closeBtn.innerHTML = '&#10005;';
+      header.appendChild(titleLink);
+      header.appendChild(closeBtn);
+
+      const body = document.createElement('div');
+      body.className = 'video-modal-body';
+
+      const modalVid = document.createElement('video');
+      modalVid.autoplay = true;
+      modalVid.muted = true;
+      modalVid.loop = true;
+      modalVid.playsInline = true;
+      modalVid.controls = false;
+      modalVid.style.maxWidth = '100%';
+
+      // copy source(s)
+      for(const s of smallVid.querySelectorAll('source')){
+        const src = document.createElement('source');
+        src.src = s.src || s.getAttribute('src');
+        src.type = s.type || s.getAttribute('type') || 'video/mp4';
+        modalVid.appendChild(src);
+      }
+
+      // sync playback position
+      try{
+        modalVid.currentTime = Math.max(0, smallVid.currentTime || 0);
+      }catch(e){/* ignore if not allowed yet */}
+
+      body.appendChild(modalVid);
+      content.appendChild(header);
+      content.appendChild(body);
+      overlay.appendChild(content);
+      document.body.appendChild(overlay);
+
+      // try to play
+      modalVid.load();
+      const playPromise = modalVid.play();
+      if(playPromise && playPromise.catch){ playPromise.catch(()=>{/* ignore autoplay block */}); }
+
+      function close(){
+        modalVid.pause();
+        overlay.remove();
+      }
+
+      closeBtn.addEventListener('click', close);
+      overlay.addEventListener('click', function(e){ if(e.target === overlay) close(); });
+    }
 
   init().catch(err=>console.error(err));
 

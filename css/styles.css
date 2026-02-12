@@ -98,7 +98,7 @@ footer{padding:12px 20px;background:rgba(255,255,255,0.9);text-align:center}
 [dir="rtl"] .review-card{border-left:none;border-right:4px solid var(--blue-2)}
 
 /* language video shown in corner */
-.lang-video{display:block;object-fit:cover;pointer-events:none;background:transparent;border-radius:4px;flex:0 0 auto;align-self:center;height:100%;width:auto;aspect-ratio:1/1}
+.lang-video{display:block;object-fit:cover;pointer-events:auto;cursor:pointer;background:transparent;border-radius:6px;flex:0 0 auto;align-self:center;height:100%;width:auto;aspect-ratio:1/1}
 [dir="rtl"] .lang-video{order:2}
 
 /* Mobile responsive */
@@ -117,6 +117,25 @@ footer{padding:12px 20px;background:rgba(255,255,255,0.9);text-align:center}
   .review-header{flex-direction:column;align-items:flex-start}
   .rating-input{flex-direction:column;align-items:flex-start}
   .rating-input select{width:100%}
+}
+
+/* Video modal (opened on double-click / double-tap) */
+.video-modal{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center;z-index:9999;padding:20px}
+.video-modal-content{background:#fff;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,0.6);overflow:hidden;display:flex;flex-direction:column;
+  /* Portrait shape: slightly smaller again (~80% of previous). Keep adaptive vw for smartphones */
+  width: min(268px,58vw);
+  aspect-ratio: 9/16;
+  max-height:92vh;
+}
+.video-modal-header{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:linear-gradient(90deg,var(--blue-2),var(--blue-1));color:#fff}
+.video-modal-title{font-weight:700;font-size:1rem}
+.video-modal-close{background:transparent;border:none;color:#fff;font-size:1.1rem;cursor:pointer}
+.video-modal-body{padding:6px;display:flex;align-items:center;justify-content:center;background:#000;flex:1}
+.video-modal-body video{width:100%;height:100%;object-fit:cover;border-radius:12px}
+
+@media (max-width:480px){
+  .video-modal-content{border-radius:16px;max-width:96vw}
+  .video-modal-body video{max-height:74vh}
 }
 
 @media (max-width: 480px) {
