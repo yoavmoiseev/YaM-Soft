@@ -3,7 +3,11 @@
     "id": "p1",
     "key": "schoolAutoScheduler",
     "demoVideo": "video/schoolautoscheduler-demo.mp4",
-    "videoInstructions": "https://drive.google.com/file/d/1mhcCemGvhb8_mL_KqoxjXVK_-CSNkf-Y/view",
+    "videoInstructions": {
+      "ru": "https://drive.google.com/file/d/1L9IWHXwj4DzynjQOlQPmTDo4S8IGhncW/view?usp=drive_link",
+      "he": "https://drive.google.com/file/d/1mhcCemGvhb8_mL_KqoxjXVK_-CSNkf-Y/view",
+      "en": "https://drive.google.com/file/d/1mhcCemGvhb8_mL_KqoxjXVK_-CSNkf-Y/view"
+    },
     "userManual": {
       "en": "docs/schoolscheduler/user_manual.html",
       "ru": "docs/schoolscheduler/user_manual_russian.html",
@@ -16,7 +20,11 @@
     "id": "p2",
     "key": "schoolAutoExam",
     "demoVideo": "video/schoolautoexam-demo.mp4",
-    "videoInstructions": "https://drive.google.com/file/d/1s0A6led-KPcMmkyz6VJCDDn5qLzUWsmx/view",
+    "videoInstructions": {
+      "ru": "https://drive.google.com/file/d/1QUc2u8SkqelG2ghNeKewjqDJCWYBrTDJ/view?usp=drive_link",
+      "he": "https://drive.google.com/file/d/1s0A6led-KPcMmkyz6VJCDDn5qLzUWsmx/view",
+      "en": "https://drive.google.com/file/d/1s0A6led-KPcMmkyz6VJCDDn5qLzUWsmx/view"
+    },
     "userManual": {
       "en": "docs/autoexam/user_manual.html",
       "ru": "docs/autoexam/user_manual_russian.html",
@@ -29,7 +37,11 @@
     "id": "p3",
     "key": "schoolChat",
     "demoVideo": "video/schoolchat-demo.mp4",
-    "videoInstructions": "https://drive.google.com/file/d/11nZj24NKrofX2YT13GejpnCb_EvCJ2XB/view?usp=sharing",
+    "videoInstructions": {
+      "ru": "https://drive.google.com/file/d/1sGRLBAo9RiRNOdxFEYtHarAlQc7se8Wg/view?usp=sharing",
+      "he": "https://drive.google.com/file/d/11nZj24NKrofX2YT13GejpnCb_EvCJ2XB/view?usp=sharing",
+      "en": "https://drive.google.com/file/d/11nZj24NKrofX2YT13GejpnCb_EvCJ2XB/view?usp=sharing"
+    },
     "userManual": {
       "en": "docs/autoCHAT/user_manual.html",
       "ru": "docs/autoCHAT/user_manual_russian.html",

@@ -66,8 +66,8 @@
         downloads.className = 'downloads';
         
         // Video Instructions (Dropdown or Coming Soon)
-        if(p.videoInstructions){
-          if(p.videoInstructions.includes('yamsoft.pythonanywhere.com')){
+        if(p.videoInstructions && p.videoInstructions[lang]){
+          if(p.videoInstructions[lang].includes('yamsoft.pythonanywhere.com')){
             // Coming soon button
             const videoInstLink = document.createElement('a');
             videoInstLink.className = 'btn';
@@ -96,7 +96,7 @@
             videoSelect.appendChild(defaultOption);
             
             // Define chapters based on project
-            let baseVideoUrl = p.videoInstructions;
+            let baseVideoUrl = p.videoInstructions[lang];
             let chapters = [];
             
             if(p.id === 'p1' || p.key === 'schoolAutoScheduler') {
