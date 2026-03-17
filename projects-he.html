@@ -124,22 +124,32 @@
               ];
             }
             
-            chapters.forEach(chapter => {
-              const option = document.createElement('option');
-              option.value = baseVideoUrl + '?t=' + chapter.time + 's';
-              option.textContent = chapter.title;
-              videoSelect.appendChild(option);
-            });
-            
-            videoSelect.addEventListener('change', function() {
-              if(this.value) {
-                window.open(this.value, '_blank');
-                this.selectedIndex = 0;
-              }
-            });
-            
-            videoWrapper.appendChild(videoSelect);
-            downloads.appendChild(videoWrapper);
+            if(chapters.length === 0) {
+              // No chapters defined — simple direct link
+              const simpleLink = document.createElement('a');
+              simpleLink.className = 'btn';
+              simpleLink.href = baseVideoUrl;
+              simpleLink.target = '_blank';
+              simpleLink.textContent = locale.projects.videoInstructions;
+              downloads.appendChild(simpleLink);
+            } else {
+              chapters.forEach(chapter => {
+                const option = document.createElement('option');
+                option.value = baseVideoUrl + '?t=' + chapter.time + 's';
+                option.textContent = chapter.title;
+                videoSelect.appendChild(option);
+              });
+              
+              videoSelect.addEventListener('change', function() {
+                if(this.value) {
+                  window.open(this.value, '_blank');
+                  this.selectedIndex = 0;
+                }
+              });
+              
+              videoWrapper.appendChild(videoSelect);
+              downloads.appendChild(videoWrapper);
+            }
           }
         }
         
@@ -174,6 +184,12 @@
           const dlLink = document.createElement('a');
           dlLink.className = 'btn';
           dlLink.href = 'https://drive.google.com/uc?export=download&id=1SkE4XTJ2p_L4uMdK-DMtpbrP3NuCQjuf';
+          dlLink.textContent = locale.projects.desktopDownload;
+          downloads.appendChild(dlLink);
+        } else if (p.key === 'schoolChat' || p.id === 'p3') {
+          const dlLink = document.createElement('a');
+          dlLink.className = 'btn';
+          dlLink.href = 'https://drive.google.com/uc?export=download&id=1Imp_c5l1kPGxVjmiq4r4N-mXGsfZ3xkl';
           dlLink.textContent = locale.projects.desktopDownload;
           downloads.appendChild(dlLink);
         } else if (p.desktopDownload) {

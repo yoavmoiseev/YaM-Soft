@@ -4,7 +4,7 @@
   "projects":{"title":"פרויקטים","learnMore":"לפרטים נוספים","videoInstructions":"סרטון הדרכה","videoComingSoon":"סרטון ההדרכה יהיה זמין בקרוב. אנא השתמש במדריך למשתמש.","userManual":"📖 מדריך למשתמש","visitSite":"🌐 בקר באתר","desktopDownload":"💾 הורד גרסת שולחן עבודה","items":{
     "schoolAutoScheduler":{"title":"SchoolAutoScheduler","desc":"בונה מערכת שעות אוטומטית לבתי-ספר ומכללות."},
     "schoolAutoExam":{"title":"SchoolAutoExam","desc":"מערכת ליצירה, בדיקה ודירוג אוטומטי של מבחנים. מספקת הערכה מהירה והוגנת לתלמידים."},
-    "schoolChat":{"title":"SchoolChat","desc":"צ'אט כיתתי פשוט לתקשורת בין תלמידים ומורה."}
+    "schoolChat":{"title":"School AutoChat","desc":"צ'אט כיתתי אופליין עם TeacherBot מובנה. התלמידים מתקשרים ושואלים שאלות בשיעור, ו-TeacherBot מסביר אוטומטית מונחים ומושגים מחומר השיעור — ללא צורך באינטרנט."}
   }},
   "reviews":{"title":"ביקורות","addReview":"הוספת ביקורת","name":"שם/ראשי תיבות","position":"תפקיד","message":"טקסט המלצה","rating":"דירוג","submit":"שלח","adminMode":"מצב עריכה","editMode":"ערוך","deleteReview":"מחק","moveUp":"העלה למעלה","noReviews":"אין ביקורות עדיין. היה הראשון!"},
   "contact":{"title":"יצירת קשר","formTitle":"צור קשר","name":"שמך","email":"האימייל שלך","project":"בחר פרויקט","subject":"נושא (כתוב את שם הפרויקט בכותרת)","message":"ההודעה שלך","submit":"שלח","general":"שאלה כללית"},

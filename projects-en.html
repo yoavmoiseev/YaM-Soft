@@ -115,6 +115,12 @@
           dlLink.href = 'https://drive.google.com/uc?export=download&id=1SkE4XTJ2p_L4uMdK-DMtpbrP3NuCQjuf';
           dlLink.textContent = locale.projects.desktopDownload;
           downloads.appendChild(dlLink);
+        } else if(p.key === 'schoolChat' || p.id === 'p3'){
+          const dlLink = document.createElement('a');
+          dlLink.className = 'btn';
+          dlLink.href = 'https://drive.google.com/uc?export=download&id=1Imp_c5l1kPGxVjmiq4r4N-mXGsfZ3xkl';
+          dlLink.textContent = locale.projects.desktopDownload;
+          downloads.appendChild(dlLink);
         } else if(p.desktopDownload){
           const dlLink = document.createElement('a');
           dlLink.className = 'btn';

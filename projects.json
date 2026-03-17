@@ -29,7 +29,11 @@
     "id": "p3",
     "key": "schoolChat",
     "demoVideo": "video/schoolchat-demo.mp4",
-    "videoInstructions": "https://yamsoft.pythonanywhere.com",
-    "siteUrl": "https://sc.yamsoft.org"
+    "videoInstructions": "https://drive.google.com/file/d/11nZj24NKrofX2YT13GejpnCb_EvCJ2XB/view?usp=sharing",
+    "userManual": {
+      "en": "docs/autoCHAT/user_manual.html",
+      "ru": "docs/autoCHAT/user_manual_russian.html",
+      "he": "docs/autoCHAT/user_manual_hebrew.html"
+    }
   }
 ]
