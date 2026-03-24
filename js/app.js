@@ -33,7 +33,7 @@
   }
 
   function applyLocale(lang){
-    const L = locales[lang] || locales['ru'];
+    const L = locales[lang] || locales['he'];
     document.getElementById('siteTitle').textContent = L.site.title;
     document.getElementById('siteTag').textContent = L.site.tag;
     document.getElementById('heroTitle').innerHTML = L.hero.title;
